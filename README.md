@@ -10,11 +10,11 @@ Local mods and vehicle compatibility for Euro Truck Simulator 2.
 
 Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
-![Version](https://img.shields.io/badge/version-1.0.30-27c8bb)
+![Version](https://img.shields.io/badge/version-1.0.31-27c8bb)
 ![Platform](https://img.shields.io/badge/platform-Windows_x64-0078d4)
 ![Distribution](https://img.shields.io/badge/distribution-single_EXE-555555)
 
-**[Download v1.0.30 / v1.0.30 indir](https://github.com/dmryasin-95/tmp-bypass-mod-manager/releases/download/v1.0.30/TMP.Mod.exe)**
+**[Download v1.0.31 / v1.0.31 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.31/TMP.Mod.exe)**
 
 [English](#english) · [Türkçe](#turkce)
 
@@ -28,14 +28,20 @@ Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
 TruckersMP Mod is a desktop launcher for using local ETS2 mods with TruckersMP and accessing the in-game Mod Manager.
 
-Download stable **v1.0.30** from [Releases](https://github.com/dmryasin-95/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.30.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+Download stable **v1.0.31** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.31.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+
+### New in v1.0.31
+
+Encrypted description files in ZIP-based mods no longer stop preparation with a “password required for extraction” error. For ZIP entries and loose files with known names, preparation reads only `.sii` and `.sui` definitions. Descriptions, images and other assets are skipped during content reading. Existing handling for unnamed HashFS v1 entries is unchanged.
+
+If a definition is encrypted, it is recorded in the preparation report and excluded from merging across all sources. Other definitions can still be processed. This does not decrypt the mod or guarantee compatibility with its encrypted definitions.
 
 ### What changed since v1.0.17
 
 - Added truck, bus and car choices for how unsupported mod vehicles appear to other players.
 - Fixed missing dealer brands and incorrect brand/vehicle associations in the tested mod setup.
-- Fixed the crash when returning to the dealer after configuring a vehicle. Two consecutive configuration/return cycles passed the user's live test in v1.0.29; v1.0.30 keeps that fix.
-- Preparation reuses its cache across launches. Measured compiled runs prepared unchanged mod content in about 13–15 seconds. Adding or changing mods requires another scan and can take longer.
+- Fixed the crash when returning to the dealer after configuring a vehicle. Two consecutive configuration/return cycles passed the user's live test in v1.0.29; later releases keep that fix.
+- Preparation reuses its cache across launches. In a v1.0.31 check with the installed mod library, the first scan took about 6 minutes 36 seconds; the next preparation took 12.4 seconds and produced the same payload. Times depend on the mod library. Updates or mod changes can require another full scan.
 - v1.0.30 adds an explanation above the vehicle choices: stock vehicles keep their own make and model.
 
 Compatible accessory database (ADB) updates are still detected automatically. If the database changes during or after preparation, prepare a new session. A different database format or changed game/TruckersMP code signatures may require an application update.
@@ -78,15 +84,16 @@ Closing the TMP Mod window leaves an active adaptation running. Exit the game to
 
 ### Checks and troubleshooting
 
-The unchanged runtime carries 19 passing dealer/transaction test groups, 54 controller tests and 42 native scenarios. The v1.0.30 interface selection/locking checks and compiled package checks passed. The user confirmed correct dealer associations and two successful configuration returns in v1.0.29. These results cover the tested setup; they do not establish compatibility with every mod or acceptance by every multiplayer server.
+For v1.0.31, 58 controller/merge/cache/database tests and 14 camera/content-reading tests passed. Independent code review and compiled package checks passed. The unchanged dealer/native runtime retains the earlier validation of 19 dealer/transaction test groups and 42 native scenarios. The user confirmed correct dealer associations and two successful configuration returns in v1.0.29; v1.0.31 has not yet been tested in a live game. These results cover the tested setup; they do not establish compatibility with every mod or acceptance by every multiplayer server.
 
 | Symptom | Next step |
 | --- | --- |
 | The game is already running | Close ETS2, start the watchers, then launch a new session. |
 | Preparation takes longer after changing mods | Allow the content scan to finish; later launches can reuse the cache. |
+| The report lists encrypted definitions | Those definitions were skipped during merging. Check whether the mod provides readable definitions; preparation does not ask for or recover passwords. |
 | The database changed after preparation | Prepare a new session. |
 | You want a different appearance for a mod | Exit the game and choose truck, bus or car before starting new watchers. |
-| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.30**, open the logs and report the mod name and the step that failed. |
+| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.31**, open the logs and report the mod name and the step that failed. |
 | A game or TruckersMP update changes the database format or code signatures | Check for a newer application version and report the error message. |
 
 ---
@@ -97,14 +104,20 @@ The unchanged runtime carries 19 passing dealer/transaction test groups, 54 cont
 
 TruckersMP Mod, yerel ETS2 modlarını TruckersMP ile kullanmak ve oyun içindeki Mod Yöneticisi'ne erişmek için hazırlanmış bir masaüstü başlatıcısıdır.
 
-Kararlı **v1.0.30** sürümünü [Releases](https://github.com/dmryasin-95/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.30.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+Kararlı **v1.0.31** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.31.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+
+### v1.0.31'de yeni
+
+ZIP tabanlı modlardaki şifreli açıklama dosyaları artık hazırlığı “password required for extraction” hatasıyla durdurmuyor. Hazırlık, adı bilinen ZIP üyelerinde ve açık klasörlerde yalnız `.sii` ve `.sui` tanımlarının içeriğini okuyor. Açıklama, resim ve diğer varlıkların içeriği açılmıyor. İsimsiz HashFS v1 üyelerinin mevcut işlenişi korunuyor.
+
+Bir tanım şifreliyse hazırlık raporuna yazılıyor ve tüm kaynaklarda o dosyanın birleştirmesi atlanıyor. Diğer tanımlar işlenmeye devam ediyor. Bu işlem modun şifresini çözmez veya şifreli tanımlarıyla uyumlu çalışacağını garanti etmez.
 
 ### v1.0.17'den bu yana değişenler
 
 - Desteklenmeyen modlu araçların diğer oyunculara görünümü için tır, otobüs ve araba seçenekleri eklendi.
 - Test edilen mod kurulumunda eksik bayi markaları ve yanlış marka/araç eşleşmeleri düzeltildi.
-- Aracı yapılandırıp bayiye geri dönünce oluşan kapanma düzeltildi. Kullanıcı v1.0.29'da iki yapılandırma/dönüş işlemini arka arkaya sorunsuz tamamladı; v1.0.30 bu düzeltmeyi korur.
-- Hazırlık önbelleği sonraki açılışlarda tekrar kullanılıyor. Ölçülen derlenmiş uygulama denemelerinde aynı mod içeriği yaklaşık 13–15 saniyede hazırlandı. Mod eklemek veya değiştirmek yeniden tarama gerektirir ve daha uzun sürebilir.
+- Aracı yapılandırıp bayiye geri dönünce oluşan kapanma düzeltildi. Kullanıcı v1.0.29'da iki yapılandırma/dönüş işlemini arka arkaya sorunsuz tamamladı; sonraki sürümler bu düzeltmeyi korur.
+- Hazırlık önbelleği sonraki açılışlarda tekrar kullanılıyor. v1.0.31'de kurulu mod arşiviyle yapılan ölçümde ilk tarama yaklaşık 6 dakika 36 saniye, sonraki hazırlık 12,4 saniye sürdü ve aynı çıktıyı üretti. Süre mod arşivine bağlıdır. Güncelleme veya mod değişikliği yeniden tam tarama gerektirebilir.
 - v1.0.30'da araç seçeneklerinin üstüne, oyunun kendi araçlarının kendi marka ve modeliyle göründüğünü açıklayan metin eklendi.
 
 Uyumlu aksesuar veri tabanı (ADB) güncellemeleri otomatik algılanmaya devam eder. Veri tabanı hazırlık sırasında veya sonrasında değişirse yeni oturum hazırla. Veri tabanı biçimi ya da oyun/TruckersMP kod imzaları değişirse uygulama güncellemesi gerekebilir.
@@ -147,33 +160,34 @@ TMP Mod penceresini kapatmak etkin uyarlamayı durdurmaz. Oturumu bitirmek için
 
 ### Kontroller ve sorun giderme
 
-Değişmeyen çalışma kodu için 19 bayi/işlem test grubu, 54 controller testi ve 42 native senaryo geçti. v1.0.30'un arayüz seçim/kilitleme ve derlenmiş paket kontrolleri de başarılı. Kullanıcı v1.0.29'da bayi eşleşmelerini ve iki yapılandırma dönüşünü doğruladı. Bu sonuçlar test edilen kurulumu kapsar; tüm modların uyumluluğunu veya her çok oyunculu sunucunun kabulünü doğrulamaz.
+v1.0.31 için 58 controller/birleştirme/önbellek/veri tabanı testi ve 14 kamera/içerik okuma testi geçti. Bağımsız kod incelemesi ve derlenmiş paket kontrolleri başarılı. Değişmeyen bayi/native çalışma kodu, önceki 19 bayi/işlem test grubu ve 42 native senaryonun doğrulamasını koruyor. Kullanıcı v1.0.29'da bayi eşleşmelerini ve iki yapılandırma dönüşünü doğruladı; v1.0.31 henüz canlı oyunda denenmedi. Bu sonuçlar test edilen kurulumu kapsar; tüm modların uyumluluğunu veya her çok oyunculu sunucunun kabulünü doğrulamaz.
 
 | Durum | Yapılacak işlem |
 | --- | --- |
 | Oyun zaten açık | ETS2'yi kapat, izleyicileri başlat ve yeni bir oyun oturumu aç. |
 | Mod değişikliğinden sonra hazırlık uzun sürüyor | İçerik taramasının tamamlanmasını bekle; sonraki açılışlar önbelleği kullanabilir. |
+| Raporda şifreli tanımlar var | Bu tanımların birleştirmesi atlandı. Modun okunabilir tanımlar sunup sunmadığını kontrol et; hazırlık şifre istemez veya şifre kurtarmaz. |
 | Hazırlıktan sonra veri tabanı değişti | Yeni oturum hazırla. |
 | Modun karşı taraftaki görünümünü değiştirmek istiyorsun | Oyundan çık ve yeni izleyicileri başlatmadan önce tır, otobüs veya araba seç. |
-| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.30** kullandığını kontrol et; günlüklerle birlikte modun adını ve hatanın oluştuğu adımı bildir. |
+| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.31** kullandığını kontrol et; günlüklerle birlikte modun adını ve hatanın oluştuğu adımı bildir. |
 | Oyun veya TruckersMP güncellemesi veri tabanı biçimini ya da kod imzalarını değiştirdi | Yeni uygulama sürümünü kontrol et ve hata mesajını bildir. |
 
 ---
 
 ## File integrity / Dosya bütünlüğü
 
-**TruckersMP Mod 1.0.30** · **9,837,568 bytes / bayt**
+**TruckersMP Mod 1.0.31** · **12,273,152 bytes / bayt**
 
 EXE SHA-256:
 
 ~~~text
-24ddbb7edbeae20933be3af67f6010fc15ebaa23bb6aec7f23910ee9947b13e8
+7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9
 ~~~
 
-ZIP SHA-256 (`TMP-Mod-1.0.30.zip`, 9,726,844 bytes / bayt):
+ZIP SHA-256 (`TMP-Mod-1.0.31.zip`, 12,157,204 bytes / bayt):
 
 ~~~text
-29cb07cc5a2386709f91fd25b3cdaa001b2624fcf6229875cd5f209e99559ddc
+3cfed00e85017674ace580ea0aec61dcaa3151fb6e97e7af453e8aed76ee54db
 ~~~
 
 ~~~powershell

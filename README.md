@@ -82,6 +82,12 @@ For example, choose **Araba · Scout** for a car mod to represent it as a Scout,
 
 Closing the TMP Mod window leaves an active adaptation running. Exit the game to end that session. **Beklemeyi iptal et** cancels waiting before the game starts. Use **Günlükleri aç** to inspect a failed run.
 
+### Antivirus alerts and permissions
+
+If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity--dosya-bütünlüğü). Review the [VirusTotal report for the v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9).
+
+If you trust the verified file and decide to run it, allow that specific file through your antivirus's quarantine or protection history screen. Keep antivirus protection enabled. The report applies to the EXE with the linked hash; scan results can change and do not guarantee safety.
+
 ### Checks and troubleshooting
 
 For v1.0.31, 58 controller/merge/cache/database tests and 14 camera/content-reading tests passed. Independent code review and compiled package checks passed. The unchanged dealer/native runtime retains the earlier validation of 19 dealer/transaction test groups and 42 native scenarios. The user confirmed correct dealer associations and two successful configuration returns in v1.0.29; v1.0.31 has not yet been tested in a live game. These results cover the tested setup; they do not establish compatibility with every mod or acceptance by every multiplayer server.
@@ -158,6 +164,12 @@ Uyumlu aksesuar veri tabanı (ADB) güncellemeleri otomatik algılanmaya devam e
 
 TMP Mod penceresini kapatmak etkin uyarlamayı durdurmaz. Oturumu bitirmek için oyundan çık. **Beklemeyi iptal et**, oyun başlamadan önce beklemeyi iptal eder. Başarısız bir çalıştırmayı incelemek için **Günlükleri aç** düğmesini kullan.
 
+### Antivirüs uyarıları ve izin verme
+
+Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity--dosya-bütünlüğü) bölümündeki değerle eşleştiğini kontrol et. [v1.0.31 EXE dosyasının VirusTotal raporunu](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9) incele.
+
+Doğruladığın dosyaya güveniyor ve çalıştırmak istiyorsan antivirüsünün karantina veya koruma geçmişi ekranından bu dosyaya özel izin ver. Antivirüs korumasını açık tut. Rapor, bağlantıdaki hash değerine sahip EXE için geçerlidir; tarama sonuçları zamanla değişebilir ve güvenlik garantisi vermez.
+
 ### Kontroller ve sorun giderme
 
 v1.0.31 için 58 controller/birleştirme/önbellek/veri tabanı testi ve 14 kamera/içerik okuma testi geçti. Bağımsız kod incelemesi ve derlenmiş paket kontrolleri başarılı. Değişmeyen bayi/native çalışma kodu, önceki 19 bayi/işlem test grubu ve 42 native senaryonun doğrulamasını koruyor. Kullanıcı v1.0.29'da bayi eşleşmelerini ve iki yapılandırma dönüşünü doğruladı; v1.0.31 henüz canlı oyunda denenmedi. Bu sonuçlar test edilen kurulumu kapsar; tüm modların uyumluluğunu veya her çok oyunculu sunucunun kabulünü doğrulamaz.
@@ -177,6 +189,8 @@ v1.0.31 için 58 controller/birleştirme/önbellek/veri tabanı testi ve 14 kame
 ## File integrity / Dosya bütünlüğü
 
 **TruckersMP Mod 1.0.31** · **12,273,152 bytes / bayt**
+
+[VirusTotal report / VirusTotal raporu — v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9)
 
 EXE SHA-256:
 

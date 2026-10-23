@@ -10,11 +10,11 @@ Local mods and vehicle compatibility for Euro Truck Simulator 2.
 
 Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
-![Version](https://img.shields.io/badge/version-1.0.32-27c8bb)
+![Version](https://img.shields.io/badge/version-1.0.33-27c8bb)
 ![Platform](https://img.shields.io/badge/platform-Windows_x64-0078d4)
 ![Distribution](https://img.shields.io/badge/distribution-single_EXE-555555)
 
-**[Download v1.0.32 / v1.0.32 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.32/TMP.Mod.exe)**
+**[Download v1.0.33 / v1.0.33 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.33/TMP.Mod.exe)**
 
 [English](#english) · [Türkçe](#turkce)
 
@@ -28,9 +28,20 @@ Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
 TruckersMP Mod is a desktop launcher for using local ETS2 mods with TruckersMP and accessing the in-game Mod Manager.
 
-Download stable **v1.0.32** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.32.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+Download stable **v1.0.33** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.33.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
 
-### New in v1.0.32
+### New in v1.0.33
+
+- The saved profile is selected automatically. Preparation reads enabled mods and the required TruckersMP packages, then reuses its cache on later launches.
+- You can change enabled mods in the same prepared profile through the in-game Mod Manager. Apply the changes and let the profile finish loading; definitions refresh during that session.
+- Mods with vehicle definitions under `/def/vehicle/car/` now use the same mapping as `/def/vehicle/truck/` mods. This fixes the tested “Invalid accessory set detected. Vehicle data not found!” disconnect. Mapping follows part categories rather than rules for individual mod names.
+- Added manual console support for time, weather and game speed, plus **0 camera + Ctrl+F9** teleport. Commands run when you enter them; the launcher does not choose values or execute commands automatically.
+- Opening the application checks for a newer stable GitHub release. **Güncelleme var** and **Güncellemeyi aç** appear when one is available. The button opens Releases; download and installation remain manual. A failed update check does not block startup.
+- Fixed watcher failures when a module disappears during a process query. Earlier dealer and configuration-return fixes are included.
+
+Older EXEs cannot gain update notifications remotely. Download v1.0.33 manually once to receive notifications about future releases.
+
+### Original parts and save editing
 
 Known original parts attached from other vehicle models through save editing now keep their identity on supported stock trucks. Earlier versions could replace them with the truck's defaults or omit them. Part order, repeated parts and attachment data are preserved. Unsupported local mod vehicles continue to use the selected truck, bus or car appearance.
 
@@ -47,7 +58,7 @@ If a definition is encrypted, it is recorded in the preparation report and exclu
 - Added truck, bus and car choices for how unsupported mod vehicles appear to other players.
 - Fixed missing dealer brands and incorrect brand/vehicle associations in the tested mod setup.
 - Fixed the crash when returning to the dealer after configuring a vehicle. Two consecutive configuration/return cycles passed the user's live test in v1.0.29; later releases keep that fix.
-- Preparation reuses its cache across launches. In a v1.0.32 check with the installed mod library, the first scan took about 7 minutes 11 seconds; the next preparation took 23.8 seconds and produced the same payload. Times depend on the mod library. Updates or mod changes can require another full scan.
+- Preparation scans the enabled mod selection rather than the entire local mod library. A compiled v1.0.33 preparation with one enabled car mod and a reusable cache took 7.90 seconds. Time depends on the selected mods and cache state.
 - v1.0.30 adds an explanation above the vehicle choices: stock vehicles keep their own make and model.
 
 Compatible accessory database (ADB) updates are still detected automatically. If the database changes during or after preparation, prepare a new session. A different database format or changed game/TruckersMP code signatures may require an application update.
@@ -74,7 +85,7 @@ On supported stock trucks, original parts already recognized by TruckersMP keep 
 | --- | --- |
 | Operating system | 64-bit Windows |
 | Game | Installed ETS2; tested build: **1.61.1.9s** |
-| Multiplayer | Installed official TruckersMP launcher; local core version: **0.7.8.3** |
+| Multiplayer | Installed official TruckersMP launcher; local core version: **0.7.9.0** |
 | Permissions | Run `TMP Mod.exe` as administrator |
 | Extra installation | No additional runtime installation required |
 
@@ -88,17 +99,34 @@ On supported stock trucks, original parts already recognized by TruckersMP keep 
 6. Click **TruckersMP’yi aç**, then press **PLAY / OYNA** in the official TruckersMP launcher.
 7. Select your mods and vehicle in the game.
 
+To change enabled mods during play, use the same prepared profile, apply the changes in the in-game Mod Manager and wait for loading to finish. Prepare a new session when switching to another profile.
+
 Closing the TMP Mod window leaves an active adaptation running. Exit the game to end that session. **Beklemeyi iptal et** cancels waiting before the game starts. Use **Günlükleri aç** to inspect a failed run.
+
+### Manual console commands
+
+Enter commands yourself in the game console.
+
+| Example | Effect |
+| --- | --- |
+| `g_set_time 12 30` | Sets local time to 12:30 |
+| `g_set_weather 1` / `g_set_weather 0` | Starts / stops rain; allow time for the transition |
+| `warp 0.8` / `warp 1` | Changes game speed / returns it to normal |
+| **0 camera + Ctrl+F9** | Moves the vehicle to the free-camera position |
+
+Console variable handling also covers values such as `g_brake_intensity` and `g_trailer_stability`. The latter retained a test value of `2`; its physical effect was not separately measured. The game's own validation remains, and not every available command has been tested.
 
 ### Antivirus alerts and permissions
 
-If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity--dosya-bütünlüğü). The linked [VirusTotal report covers the previous v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.32 has a different hash; check any scan report against the hash of your downloaded file.
+If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity). The linked [VirusTotal report covers the previous v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.33 has a different hash; check any scan report against the hash of your downloaded file.
 
 If you trust the verified file and decide to run it, allow that specific file through your antivirus's quarantine or protection history screen. Keep antivirus protection enabled. The report applies to the EXE with the linked hash; scan results can change and do not guarantee safety.
 
 ### Checks and troubleshooting
 
-For v1.0.32, 22 Python policy/database tests, 14 camera/content-reading tests and 58 controller tests passed. Each of the three appearance choices passed 46 compiled native scenarios, including preservation of the reported 88 parts and their original objects. Cross-model part checks passed for 26 supported truck models across 78 model/choice combinations. Independent code review and compiled package checks passed. The earlier dealer fix passed 19 dealer/transaction test groups; the user confirmed correct dealer associations and two successful configuration returns in v1.0.29. v1.0.32 has not yet been tested in a live game. These results cover the tested setup; they do not establish compatibility with every mod or acceptance by every multiplayer server.
+v1.0.33 passed 24 Python vehicle/database tests, 105 preparation/controller tests and 25 launcher/update tests. Each of the three appearance choices passed 54 compiled native scenarios. The captured 20-part car rejection also passed replay through the native memory-copy code with all three choices. Compiled package checks and preparation passed.
+
+Live checks confirmed startup, mod changes in the same profile, time/weather commands and free-camera teleport. With the `/car/` fix, the tested car joined the server without being kicked. Save-edited original parts remain covered by the reported 88-part configuration tests. Remote appearance for each setup still needs a second player's check; these results do not cover every mod.
 
 | Symptom | Next step |
 | --- | --- |
@@ -107,7 +135,7 @@ For v1.0.32, 22 Python policy/database tests, 14 camera/content-reading tests an
 | The report lists encrypted definitions | Those definitions were skipped during merging. Check whether the mod provides readable definitions; preparation does not ask for or recover passwords. |
 | The database changed after preparation | Prepare a new session. |
 | You want a different appearance for a mod | Exit the game and choose truck, bus or car before starting new watchers. |
-| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.32**, open the logs and report the mod name and the step that failed. |
+| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.33**, open the logs and report the mod name and the step that failed. |
 | A game or TruckersMP update changes the database format or code signatures | Check for a newer application version and report the error message. |
 
 ---
@@ -118,9 +146,20 @@ For v1.0.32, 22 Python policy/database tests, 14 camera/content-reading tests an
 
 TruckersMP Mod, yerel ETS2 modlarını TruckersMP ile kullanmak ve oyun içindeki Mod Yöneticisi'ne erişmek için hazırlanmış bir masaüstü başlatıcısıdır.
 
-Kararlı **v1.0.32** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.32.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+Kararlı **v1.0.33** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.33.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
 
-### v1.0.32'de yeni
+### v1.0.33'te yeni
+
+- Kayıtlı profil otomatik seçiliyor. Hazırlık, etkin modları ve gerekli TruckersMP paketlerini okuyor; sonraki açılışlarda önbelleği kullanıyor.
+- Hazırlanan aynı profilde oyun içindeki Mod Yöneticisi'nden etkin modları değiştirebilirsin. Değişiklikleri uygula ve profilin yüklenmesini bekle; tanımlar o oturumda yenilenir.
+- Tanımları `/def/vehicle/car/` altında bulunan modlar da `/def/vehicle/truck/` modlarıyla aynı eşleme sistemini kullanıyor. Test edilen “Invalid accessory set detected. Vehicle data not found!” atılması düzeltildi. Eşleme, mod adlarına özel kurallarla değil parça türlerine göre çalışıyor.
+- Saat, hava ve oyun hızı için manuel konsol desteği ile **0 kamera + Ctrl+F9** ışınlanması eklendi. Komutlar sen yazdığında çalışır; başlatıcı kendiliğinden değer seçmez veya komut çalıştırmaz.
+- Uygulama açıldığında GitHub'da daha yeni bir kararlı sürüm aranıyor. Yeni sürüm varsa **Güncelleme var** bildirimi ve **Güncellemeyi aç** düğmesi gösterilir. Düğme Releases sayfasını açar; indirme ve kurulum elle yapılır. Güncelleme kontrolünün başarısız olması açılışı engellemez.
+- Süreç sorgusu sırasında bir modül kaldırıldığında oluşan izleyici hatası düzeltildi. Önceki bayi ve yapılandırmadan dönüş düzeltmeleri de bu sürümde var.
+
+Eski EXE'lere güncelleme bildirimi uzaktan eklenemez. Sonraki sürümlerden haberdar olmak için v1.0.33'ü ilk kez elle indirmen gerekir.
+
+### Orijinal parçalar ve save edit
 
 Save edit ile başka araç modellerinden takılan tanınan orijinal parçalar, desteklenen vanilla tırlarda artık kendi kimlikleriyle gönderiliyor. Önceki sürümler bunları tırın varsayılan parçalarına çevirebiliyor veya çıkarabiliyordu. Parça sırası, tekrarlanan parçalar ve slot bağlantıları korunuyor. Desteklenmeyen yerel modlu araçlar seçilen tır, otobüs veya araba görünümünü kullanmaya devam ediyor.
 
@@ -137,7 +176,7 @@ Bir tanım şifreliyse hazırlık raporuna yazılıyor ve tüm kaynaklarda o dos
 - Desteklenmeyen modlu araçların diğer oyunculara görünümü için tır, otobüs ve araba seçenekleri eklendi.
 - Test edilen mod kurulumunda eksik bayi markaları ve yanlış marka/araç eşleşmeleri düzeltildi.
 - Aracı yapılandırıp bayiye geri dönünce oluşan kapanma düzeltildi. Kullanıcı v1.0.29'da iki yapılandırma/dönüş işlemini arka arkaya sorunsuz tamamladı; sonraki sürümler bu düzeltmeyi korur.
-- Hazırlık önbelleği sonraki açılışlarda tekrar kullanılıyor. v1.0.32'de kurulu mod arşiviyle yapılan ölçümde ilk tarama yaklaşık 7 dakika 11 saniye, sonraki hazırlık 23,8 saniye sürdü ve aynı çıktıyı üretti. Süre mod arşivine bağlıdır. Güncelleme veya mod değişikliği yeniden tam tarama gerektirebilir.
+- Hazırlık, tüm yerel mod arşivi yerine etkin mod seçimini tarıyor. Derlenmiş v1.0.33 ile bir araba modu etkinken ve önbellek kullanılabilirken hazırlık 7,90 saniye sürdü. Süre, seçilen modlara ve önbelleğin durumuna bağlıdır.
 - v1.0.30'da araç seçeneklerinin üstüne, oyunun kendi araçlarının kendi marka ve modeliyle göründüğünü açıklayan metin eklendi.
 
 Uyumlu aksesuar veri tabanı (ADB) güncellemeleri otomatik algılanmaya devam eder. Veri tabanı hazırlık sırasında veya sonrasında değişirse yeni oturum hazırla. Veri tabanı biçimi ya da oyun/TruckersMP kod imzaları değişirse uygulama güncellemesi gerekebilir.
@@ -164,7 +203,7 @@ Desteklenen vanilla tırlarda, TruckersMP'nin tanıdığı orijinal parçalar sa
 | --- | --- |
 | İşletim sistemi | 64-bit Windows |
 | Oyun | Kurulu ETS2; test edilen sürüm: **1.61.1.9s** |
-| Çok oyunculu | Kurulu resmî TruckersMP başlatıcısı; yerel core sürümü: **0.7.8.3** |
+| Çok oyunculu | Kurulu resmî TruckersMP başlatıcısı; yerel core sürümü: **0.7.9.0** |
 | Yetki | `TMP Mod.exe` yönetici olarak çalıştırılmalı |
 | Ek kurulum | Ek çalışma ortamı kurulumu gerekmez |
 
@@ -178,17 +217,34 @@ Desteklenen vanilla tırlarda, TruckersMP'nin tanıdığı orijinal parçalar sa
 6. **TruckersMP’yi aç** düğmesine bas, ardından resmî başlatıcıda **OYNA** seçeneğini kullan.
 7. Modlarını ve aracını oyundan seç.
 
+Oyun sırasında etkin modları değiştirmek için hazırlanan aynı profili kullan, oyun içindeki Mod Yöneticisi'nde değişiklikleri uygula ve yüklemenin tamamlanmasını bekle. Başka profile geçerken yeni oturum hazırla.
+
 TMP Mod penceresini kapatmak etkin uyarlamayı durdurmaz. Oturumu bitirmek için oyundan çık. **Beklemeyi iptal et**, oyun başlamadan önce beklemeyi iptal eder. Başarısız bir çalıştırmayı incelemek için **Günlükleri aç** düğmesini kullan.
+
+### Manuel konsol komutları
+
+Komutları oyun konsoluna kendin yaz.
+
+| Örnek | Etkisi |
+| --- | --- |
+| `g_set_time 12 30` | Yerel saati 12:30 yapar |
+| `g_set_weather 1` / `g_set_weather 0` | Yağmuru başlatır / durdurur; geçiş için bir süre bekle |
+| `warp 0.8` / `warp 1` | Oyun hızını değiştirir / normale döndürür |
+| **0 kamera + Ctrl+F9** | Aracı serbest kameranın bulunduğu yere taşır |
+
+Konsol değişkenlerinin işlenmesi `g_brake_intensity` ve `g_trailer_stability` gibi değerleri de kapsar. Son komutta denenen `2` değeri korundu; fizik üzerindeki etkisi ayrıca ölçülmedi. Oyunun kendi doğrulaması korunur; mevcut komutların tamamı test edilmiş değildir.
 
 ### Antivirüs uyarıları ve izin verme
 
-Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity--dosya-bütünlüğü) bölümündeki değerle eşleştiğini kontrol et. Bağlantıdaki [VirusTotal raporu önceki v1.0.31 EXE dosyasına aittir](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.32'nin hash değeri farklıdır; incelediğin tarama raporunun indirdiğin dosyanın hash değeriyle eşleştiğini kontrol et.
+Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity) bölümündeki değerle eşleştiğini kontrol et. Bağlantıdaki [VirusTotal raporu önceki v1.0.31 EXE dosyasına aittir](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.33'ün hash değeri farklıdır; incelediğin tarama raporunun indirdiğin dosyanın hash değeriyle eşleştiğini kontrol et.
 
 Doğruladığın dosyaya güveniyor ve çalıştırmak istiyorsan antivirüsünün karantina veya koruma geçmişi ekranından bu dosyaya özel izin ver. Antivirüs korumasını açık tut. Rapor, bağlantıdaki hash değerine sahip EXE için geçerlidir; tarama sonuçları zamanla değişebilir ve güvenlik garantisi vermez.
 
 ### Kontroller ve sorun giderme
 
-v1.0.32 için 22 Python politika/veri tabanı testi, 14 kamera/içerik okuma testi ve 58 controller testi geçti. Üç görünüm seçeneğinin her birinde, bildirilen 88 parçanın ve özgün nesnelerinin korunması dahil 46 derlenmiş native senaryo geçti. Çapraz model parça kontrolleri 26 desteklenen tır modelinde, 78 model/seçenek birleşiminde başarılı. Bağımsız kod incelemesi ve derlenmiş paket kontrolleri de geçti. Önceki bayi düzeltmesi 19 bayi/işlem test grubundan geçti; kullanıcı v1.0.29'da bayi eşleşmelerini ve iki yapılandırma dönüşünü doğruladı. v1.0.32 henüz canlı oyunda denenmedi. Bu sonuçlar test edilen kurulumu kapsar; tüm modların uyumluluğunu veya her çok oyunculu sunucunun kabulünü doğrulamaz.
+v1.0.33 için 24 Python araç/veri tabanı testi, 105 hazırlık/controller testi ve 25 başlatıcı/güncelleme testi geçti. Üç görünüm seçeneğinin her birinde 54 derlenmiş native senaryo başarılı. Kaydedilen 20 parçalık araba reddi de üç seçenekte native bellek kopyalama koduyla yeniden işlendi ve geçti. Derlenmiş paket kontrolleri ve hazırlık başarılı.
+
+Canlı testlerde başlangıç, aynı profilde mod değiştirme, saat/hava komutları ve serbest kamera ışınlanması doğrulandı. `/car/` düzeltmesinden sonra denenen araba sunucuya atılmadan girdi. Save edit ile takılan orijinal parçalar, bildirilen 88 parçalık kurulumun testleriyle korunuyor. Her kurulumun karşı oyuncudaki görünümü için ikinci oyuncuyla kontrol gerekir; bu sonuçlar tüm modları kapsamaz.
 
 | Durum | Yapılacak işlem |
 | --- | --- |
@@ -197,25 +253,27 @@ v1.0.32 için 22 Python politika/veri tabanı testi, 14 kamera/içerik okuma tes
 | Raporda şifreli tanımlar var | Bu tanımların birleştirmesi atlandı. Modun okunabilir tanımlar sunup sunmadığını kontrol et; hazırlık şifre istemez veya şifre kurtarmaz. |
 | Hazırlıktan sonra veri tabanı değişti | Yeni oturum hazırla. |
 | Modun karşı taraftaki görünümünü değiştirmek istiyorsun | Oyundan çık ve yeni izleyicileri başlatmadan önce tır, otobüs veya araba seç. |
-| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.32** kullandığını kontrol et; günlüklerle birlikte modun adını ve hatanın oluştuğu adımı bildir. |
+| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.33** kullandığını kontrol et; günlüklerle birlikte modun adını ve hatanın oluştuğu adımı bildir. |
 | Oyun veya TruckersMP güncellemesi veri tabanı biçimini ya da kod imzalarını değiştirdi | Yeni uygulama sürümünü kontrol et ve hata mesajını bildir. |
 
 ---
 
+<a id="file-integrity"></a>
+
 ## File integrity / Dosya bütünlüğü
 
-**TruckersMP Mod 1.0.32** · **12,272,640 bytes / bayt**
+**TruckersMP Mod 1.0.33** · **13,105,664 bytes / bayt**
 
 EXE SHA-256:
 
 ~~~text
-35f44beb59e903d38ed077baf24d56658eb73dbb7dbb98da3f9b945565199e60
+43071b57f9fc827a54a494177684822df82b8c059e0d24132b1a31235b75b611
 ~~~
 
-ZIP SHA-256 (`TMP-Mod-1.0.32.zip`, 12,155,845 bytes / bayt):
+ZIP SHA-256 (`TMP-Mod-1.0.33.zip`, 12,993,793 bytes / bayt):
 
 ~~~text
-bca227e4f5c30bd3bb40e7a3d32890fd4a726bedd0869f22e6cbd560888a1ba5
+8150f3cd6b87ab38281c1b113faeb7b217be616fdee658de71fd5620f3d477ff
 ~~~
 
 ~~~powershell

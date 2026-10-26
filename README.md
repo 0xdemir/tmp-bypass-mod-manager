@@ -10,11 +10,11 @@ Local mods and vehicle compatibility for Euro Truck Simulator 2.
 
 Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
-![Version](https://img.shields.io/badge/version-1.0.33-27c8bb)
+![Version](https://img.shields.io/badge/version-1.0.34-27c8bb)
 ![Platform](https://img.shields.io/badge/platform-Windows_x64-0078d4)
 ![Distribution](https://img.shields.io/badge/distribution-single_EXE-555555)
 
-**[Download v1.0.33 / v1.0.33 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.33/TMP.Mod.exe)**
+**[Download v1.0.34 / v1.0.34 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.34/TMP.Mod.exe)**
 
 [English](#english) · [Türkçe](#turkce)
 
@@ -28,7 +28,15 @@ Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
 TruckersMP Mod is a desktop launcher for using local ETS2 mods with TruckersMP and accessing the in-game Mod Manager.
 
-Download stable **v1.0.33** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.33.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+Download stable **v1.0.34** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.34.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+
+### New in v1.0.34
+
+- Fixed Steam Workshop IDs from saved profile package entries so they resolve to the corresponding Steam item directory.
+- Added bounded, rotating local JSONL diagnostics for startup, preparation stages, durations and errors. **Create diagnostic ZIP** asks before exporting and lets you choose where to save it. The bundle includes recent run status/error logs, removes user/profile paths, and excludes profile saves and mod archives. Mod names or Workshop IDs may appear; inspect the ZIP before sharing. It is never uploaded automatically.
+- Refined the launcher layout, including clearer status and vehicle-choice cards and separated utility buttons.
+
+Older EXEs cannot gain update notifications remotely. Download v1.0.34 manually once to receive notices about future releases.
 
 ### New in v1.0.33
 
@@ -38,8 +46,6 @@ Download stable **v1.0.33** from [Releases](https://github.com/0xdemir/tmp-bypas
 - Added manual console support for time, weather and game speed, plus **0 camera + Ctrl+F9** teleport. Commands run when you enter them; the launcher does not choose values or execute commands automatically.
 - Opening the application checks for a newer stable GitHub release. **Güncelleme var** and **Güncellemeyi aç** appear when one is available. The button opens Releases; download and installation remain manual. A failed update check does not block startup.
 - Fixed watcher failures when a module disappears during a process query. Earlier dealer and configuration-return fixes are included.
-
-Older EXEs cannot gain update notifications remotely. Download v1.0.33 manually once to receive notifications about future releases.
 
 ### Original parts and save editing
 
@@ -118,13 +124,13 @@ Console variable handling also covers values such as `g_brake_intensity` and `g_
 
 ### Antivirus alerts and permissions
 
-If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity). The linked [VirusTotal report covers the previous v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.33 has a different hash; check any scan report against the hash of your downloaded file.
+If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity). The linked [VirusTotal report covers the previous v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.34 has a different hash; check any scan report against the hash of your downloaded file.
 
 If you trust the verified file and decide to run it, allow that specific file through your antivirus's quarantine or protection history screen. Keep antivirus protection enabled. The report applies to the EXE with the linked hash; scan results can change and do not guarantee safety.
 
 ### Checks and troubleshooting
 
-v1.0.33 passed 24 Python vehicle/database tests, 105 preparation/controller tests and 25 launcher/update tests. Each of the three appearance choices passed 54 compiled native scenarios. The captured 20-part car rejection also passed replay through the native memory-copy code with all three choices. Compiled package checks and preparation passed.
+v1.0.34 passed 29 launcher/update tests and its frozen package check. The packaged payload reports 108 controller tests and 54 compiled native scenarios. Preparation, diagnostics export/redaction and package integrity checks passed. The captured 20-part car rejection and save-edited 88-part Scania configuration remain covered by the preceding validation. The refreshed interface keeps the existing vehicle choices and startup flow while separating utility buttons.
 
 Live checks confirmed startup, mod changes in the same profile, time/weather commands and free-camera teleport. With the `/car/` fix, the tested car joined the server without being kicked. Save-edited original parts remain covered by the reported 88-part configuration tests. Remote appearance for each setup still needs a second player's check; these results do not cover every mod.
 
@@ -135,7 +141,7 @@ Live checks confirmed startup, mod changes in the same profile, time/weather com
 | The report lists encrypted definitions | Those definitions were skipped during merging. Check whether the mod provides readable definitions; preparation does not ask for or recover passwords. |
 | The database changed after preparation | Prepare a new session. |
 | You want a different appearance for a mod | Exit the game and choose truck, bus or car before starting new watchers. |
-| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.33**, open the logs and report the mod name and the step that failed. |
+| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.34**, create a diagnostic ZIP, inspect it and share it with the mod name and failing step. |
 | A game or TruckersMP update changes the database format or code signatures | Check for a newer application version and report the error message. |
 
 ---
@@ -146,7 +152,15 @@ Live checks confirmed startup, mod changes in the same profile, time/weather com
 
 TruckersMP Mod, yerel ETS2 modlarını TruckersMP ile kullanmak ve oyun içindeki Mod Yöneticisi'ne erişmek için hazırlanmış bir masaüstü başlatıcısıdır.
 
-Kararlı **v1.0.33** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.33.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+Kararlı **v1.0.34** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.34.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+
+### v1.0.34'te yeni
+
+- Kayıtlı profil paketlerindeki Steam Workshop numaraları artık ilgili Steam öğe klasörüne doğru çözülüyor.
+- Başlangıç, hazırlık aşamaları, süreler ve hatalar için sınırlı boyutta dönen yerel JSONL günlükleri eklendi. **Tanılama ZIP’i oluştur** dışa aktarmadan önce onay ister ve kaydetme yerini sana seçtirir. Paket son oturumların durum/hata günlüklerini içerir; kullanıcı/profil yollarını ayıklar, profil kayıtlarını ve mod arşivlerini içermez. Mod adları veya Workshop numaraları bulunabilir; paylaşmadan önce ZIP’i incele. Paket otomatik yüklenmez.
+- Durum ve araç seçimi kartları netleştirildi; alt işlemlerin düğmeleri birbirinden ayrıldı.
+
+Eski EXE'lere güncelleme bildirimi uzaktan eklenemez. Sonraki sürümlerden haberdar olmak için v1.0.34'ü ilk kez elle indir.
 
 ### v1.0.33'te yeni
 
@@ -156,8 +170,6 @@ Kararlı **v1.0.33** sürümünü [Releases](https://github.com/0xdemir/tmp-bypa
 - Saat, hava ve oyun hızı için manuel konsol desteği ile **0 kamera + Ctrl+F9** ışınlanması eklendi. Komutlar sen yazdığında çalışır; başlatıcı kendiliğinden değer seçmez veya komut çalıştırmaz.
 - Uygulama açıldığında GitHub'da daha yeni bir kararlı sürüm aranıyor. Yeni sürüm varsa **Güncelleme var** bildirimi ve **Güncellemeyi aç** düğmesi gösterilir. Düğme Releases sayfasını açar; indirme ve kurulum elle yapılır. Güncelleme kontrolünün başarısız olması açılışı engellemez.
 - Süreç sorgusu sırasında bir modül kaldırıldığında oluşan izleyici hatası düzeltildi. Önceki bayi ve yapılandırmadan dönüş düzeltmeleri de bu sürümde var.
-
-Eski EXE'lere güncelleme bildirimi uzaktan eklenemez. Sonraki sürümlerden haberdar olmak için v1.0.33'ü ilk kez elle indirmen gerekir.
 
 ### Orijinal parçalar ve save edit
 
@@ -236,13 +248,13 @@ Konsol değişkenlerinin işlenmesi `g_brake_intensity` ve `g_trailer_stability`
 
 ### Antivirüs uyarıları ve izin verme
 
-Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity) bölümündeki değerle eşleştiğini kontrol et. Bağlantıdaki [VirusTotal raporu önceki v1.0.31 EXE dosyasına aittir](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.33'ün hash değeri farklıdır; incelediğin tarama raporunun indirdiğin dosyanın hash değeriyle eşleştiğini kontrol et.
+Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity) bölümündeki değerle eşleştiğini kontrol et. Bağlantıdaki [VirusTotal raporu önceki v1.0.31 EXE dosyasına aittir](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.34'ün hash değeri farklıdır; incelediğin tarama raporunun indirdiğin dosyanın hash değeriyle eşleştiğini kontrol et.
 
 Doğruladığın dosyaya güveniyor ve çalıştırmak istiyorsan antivirüsünün karantina veya koruma geçmişi ekranından bu dosyaya özel izin ver. Antivirüs korumasını açık tut. Rapor, bağlantıdaki hash değerine sahip EXE için geçerlidir; tarama sonuçları zamanla değişebilir ve güvenlik garantisi vermez.
 
 ### Kontroller ve sorun giderme
 
-v1.0.33 için 24 Python araç/veri tabanı testi, 105 hazırlık/controller testi ve 25 başlatıcı/güncelleme testi geçti. Üç görünüm seçeneğinin her birinde 54 derlenmiş native senaryo başarılı. Kaydedilen 20 parçalık araba reddi de üç seçenekte native bellek kopyalama koduyla yeniden işlendi ve geçti. Derlenmiş paket kontrolleri ve hazırlık başarılı.
+v1.0.34 için 29 başlatıcı/güncelleme testi ve dondurulmuş paket kontrolü geçti. Paket içindeki 108 controller testi ve 54 derlenmiş native senaryo doğrulandı. Hazırlık, tanılama dışa aktarma/yol ayıklama ve paket bütünlüğü kontrolleri başarılı. Kaydedilen 20 parçalık araba reddi ile save edit yapılmış 88 parçalık Scania kurulumu önceki doğrulamada test edildi. Yeni arayüz aynı araç seçeneklerini ve başlatma akışını koruyor; alt işlemlerin düğmeleri artık ayrı.
 
 Canlı testlerde başlangıç, aynı profilde mod değiştirme, saat/hava komutları ve serbest kamera ışınlanması doğrulandı. `/car/` düzeltmesinden sonra denenen araba sunucuya atılmadan girdi. Save edit ile takılan orijinal parçalar, bildirilen 88 parçalık kurulumun testleriyle korunuyor. Her kurulumun karşı oyuncudaki görünümü için ikinci oyuncuyla kontrol gerekir; bu sonuçlar tüm modları kapsamaz.
 
@@ -253,7 +265,7 @@ Canlı testlerde başlangıç, aynı profilde mod değiştirme, saat/hava komutl
 | Raporda şifreli tanımlar var | Bu tanımların birleştirmesi atlandı. Modun okunabilir tanımlar sunup sunmadığını kontrol et; hazırlık şifre istemez veya şifre kurtarmaz. |
 | Hazırlıktan sonra veri tabanı değişti | Yeni oturum hazırla. |
 | Modun karşı taraftaki görünümünü değiştirmek istiyorsun | Oyundan çık ve yeni izleyicileri başlatmadan önce tır, otobüs veya araba seç. |
-| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.33** kullandığını kontrol et; günlüklerle birlikte modun adını ve hatanın oluştuğu adımı bildir. |
+| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.34** kullandığını kontrol et; Tanılama ZIP’i oluştur, içeriğini incele ve mod adıyla hatanın oluştuğu adımı paylaş. |
 | Oyun veya TruckersMP güncellemesi veri tabanı biçimini ya da kod imzalarını değiştirdi | Yeni uygulama sürümünü kontrol et ve hata mesajını bildir. |
 
 ---
@@ -262,18 +274,18 @@ Canlı testlerde başlangıç, aynı profilde mod değiştirme, saat/hava komutl
 
 ## File integrity / Dosya bütünlüğü
 
-**TruckersMP Mod 1.0.33** · **13,105,664 bytes / bayt**
+**TruckersMP Mod 1.0.34** · **13,163,520 bytes / bayt**
 
 EXE SHA-256:
 
 ~~~text
-43071b57f9fc827a54a494177684822df82b8c059e0d24132b1a31235b75b611
+2a327494dd426529a2a884099debed12e7a9f9387fd3f201cacff66fa43200c3
 ~~~
 
-ZIP SHA-256 (`TMP-Mod-1.0.33.zip`, 12,993,793 bytes / bayt):
+ZIP SHA-256 (`TMP-Mod-1.0.34.zip`, 13,057,246 bytes / bayt):
 
 ~~~text
-8150f3cd6b87ab38281c1b113faeb7b217be616fdee658de71fd5620f3d477ff
+6893e5ef2d3dbb0ca924c153648db78375cda2edd6846d95bf5b4c0e6f3cec41
 ~~~
 
 ~~~powershell

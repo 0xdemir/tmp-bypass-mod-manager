@@ -10,11 +10,11 @@ Local mods and vehicle compatibility for Euro Truck Simulator 2.
 
 Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
-![Version](https://img.shields.io/badge/version-1.0.34-27c8bb)
+![Version](https://img.shields.io/badge/version-1.0.35-27c8bb)
 ![Platform](https://img.shields.io/badge/platform-Windows_x64-0078d4)
 ![Distribution](https://img.shields.io/badge/distribution-single_EXE-555555)
 
-**[Download v1.0.34 / v1.0.34 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.34/TMP.Mod.exe)**
+**[Download v1.0.35 / v1.0.35 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.35/TMP.Mod.exe)**
 
 [English](#english) · [Türkçe](#turkce)
 
@@ -28,7 +28,15 @@ Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
 TruckersMP Mod is a desktop launcher for using local ETS2 mods with TruckersMP and accessing the in-game Mod Manager.
 
-Download stable **v1.0.34** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.34.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+Download stable **v1.0.35** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.35.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+
+### New in v1.0.35
+
+- Added a **TR / EN** language selector. Buttons, status messages and dialogs switch immediately; the selected language is saved for the next launch.
+- Updated compatibility with the 27 October TruckersMP core update. Fixed preparation stopping with `database global: expected 1 hit, found 0`. The resolver checks the database vector layout and all seven accessory types before accepting the updated image.
+- Deleted local mod packages and unsubscribed Workshop items retained in the saved active list no longer stop preparation when their absence can be confirmed. Missing entries are reported; profiles are not edited. Duplicate packages, incomplete installations and an undetected Workshop directory still require attention.
+- Added general handling for extra accessory categories belonging to the source vehicle. Unsupported extras can be omitted from the outgoing representation without changing local mod files or saves. Recognized original parts retain their existing handling; missing essentials and ambiguous vehicle roots still reject adaptation.
+- Improved game-exit detection and error reporting. An error after adaptation is reported as an interrupted session monitor instead of a preparation failure.
 
 ### New in v1.0.34
 
@@ -36,7 +44,7 @@ Download stable **v1.0.34** from [Releases](https://github.com/0xdemir/tmp-bypas
 - Added bounded, rotating local JSONL diagnostics for startup, preparation stages, durations and errors. **Create diagnostic ZIP** asks before exporting and lets you choose where to save it. The bundle includes recent run status/error logs, removes user/profile paths, and excludes profile saves and mod archives. Mod names or Workshop IDs may appear; inspect the ZIP before sharing. It is never uploaded automatically.
 - Refined the launcher layout, including clearer status and vehicle-choice cards and separated utility buttons.
 
-Older EXEs cannot gain update notifications remotely. Download v1.0.34 manually once to receive notices about future releases.
+Older EXEs cannot gain update notifications remotely. Download v1.0.35 manually once to receive notices about future releases.
 
 ### New in v1.0.33
 
@@ -67,19 +75,21 @@ If a definition is encrypted, it is recorded in the preparation report and exclu
 - Preparation scans the enabled mod selection rather than the entire local mod library. A compiled v1.0.33 preparation with one enabled car mod and a reusable cache took 7.90 seconds. Time depends on the selected mods and cache state.
 - v1.0.30 adds an explanation above the vehicle choices: stock vehicles keep their own make and model.
 
+Skipping a deleted package does not restore vehicles or trailers that still depend on it in a save. Restore that mod temporarily, remove its dependent vehicles or trailers in game, and save before deleting it again.
+
 Compatible accessory database (ADB) updates are still detected automatically. If the database changes during or after preparation, prepare a new session. A different database format or changed game/TruckersMP code signatures may require an application update.
 
 ### How the three vehicle choices work
 
-Choose **Karşı tarafta görünen araç** before starting the watchers. This sets the network representation of an unsupported local mod vehicle. You continue to see your own mod's model and interior; other players see the selected supported vehicle.
+Choose **Vehicle other players see** before starting the watchers. This sets the network representation of an unsupported local mod vehicle. You continue to see your own mod's model and interior; other players see the selected supported vehicle.
 
 | Choice in the application | Other players see |
 | --- | --- |
-| **Tır · Volvo FH16** | Volvo FH16 (`volvo.fh16_2012`) |
-| **Otobüs · TruckersMP** | The supported TruckersMP bus (`t16shd`) |
-| **Araba · Scout** | Scout / Škoda Superb (`skoda.superb`) |
+| **TRUCK · Volvo FH16** | Volvo FH16 (`volvo.fh16_2012`) |
+| **BUS · TruckersMP** | The supported TruckersMP bus (`t16shd`) |
+| **CAR · Scout** | Scout / Škoda Superb (`skoda.superb`) |
 
-For example, choose **Araba · Scout** for a car mod to represent it as a Scout, or **Otobüs · TruckersMP** for a bus mod to represent it as the supported bus. This choice applies to unsupported mod vehicles throughout that session; it does not automatically switch based on the type of each mod. Start a new session to change it.
+For example, choose **CAR · Scout** for a car mod to represent it as a Scout, or **BUS · TruckersMP** for a bus mod to represent it as the supported bus. This choice applies to unsupported mod vehicles throughout that session; it does not automatically switch based on the type of each mod. Start a new session to change it.
 
 **Stock ETS2 vehicles keep their own make and model.** A stock Scania stays a Scania even with Volvo selected. Vehicles already recognized by TruckersMP also keep their supported identity. The choice does not grant access to restricted vehicles or parts; client and server rules still apply. Compatibility depends on the mod's definitions and dependencies.
 
@@ -91,7 +101,7 @@ On supported stock trucks, original parts already recognized by TruckersMP keep 
 | --- | --- |
 | Operating system | 64-bit Windows |
 | Game | Installed ETS2; tested build: **1.61.1.9s** |
-| Multiplayer | Installed official TruckersMP launcher; local core version: **0.7.9.0** |
+| Multiplayer | Installed official TruckersMP launcher; local core version: **0.7.9.2** |
 | Permissions | Run `TMP Mod.exe` as administrator |
 | Extra installation | No additional runtime installation required |
 
@@ -100,14 +110,14 @@ On supported stock trucks, original parts already recognized by TruckersMP keep 
 1. Close ETS2 and any older TMP Mod windows before preparing a new session.
 2. Place `TMP Mod.exe` in `%APPDATA%\TruckersMP`.
 3. Right-click `TMP Mod.exe`, select **Run as administrator** and approve the Windows prompt. Then choose the vehicle appearance described above.
-4. Click **İzleyicileri başlat** (Start watchers).
-5. Wait for **OYNA için hazır** (Ready to play).
-6. Click **TruckersMP’yi aç**, then press **PLAY / OYNA** in the official TruckersMP launcher.
+4. Select **TR** or **EN** in the header, then click **Start watchers**.
+5. Wait for **Ready for PLAY**.
+6. Click **Open TruckersMP**, then press **PLAY / OYNA** in the official TruckersMP launcher.
 7. Select your mods and vehicle in the game.
 
 To change enabled mods during play, use the same prepared profile, apply the changes in the in-game Mod Manager and wait for loading to finish. Prepare a new session when switching to another profile.
 
-Closing the TMP Mod window leaves an active adaptation running. Exit the game to end that session. **Beklemeyi iptal et** cancels waiting before the game starts. Use **Günlükleri aç** to inspect a failed run.
+Closing the TMP Mod window leaves an active adaptation running. Exit the game to end that session. **Cancel waiting** cancels waiting before the game starts. Use **Open logs** to inspect a failed run. The selected language is stored locally in `TMP-Mod-settings.json` and restored on the next launch.
 
 ### Manual console commands
 
@@ -124,13 +134,13 @@ Console variable handling also covers values such as `g_brake_intensity` and `g_
 
 ### Antivirus alerts and permissions
 
-If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity). The linked [VirusTotal report covers the previous v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.34 has a different hash; check any scan report against the hash of your downloaded file.
+If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity). The linked [VirusTotal report covers the previous v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.35 has a different hash; check any scan report against the hash of your downloaded file.
 
 If you trust the verified file and decide to run it, allow that specific file through your antivirus's quarantine or protection history screen. Keep antivirus protection enabled. The report applies to the EXE with the linked hash; scan results can change and do not guarantee safety.
 
 ### Checks and troubleshooting
 
-v1.0.34 passed 29 launcher/update tests and its frozen package check. The packaged payload reports 108 controller tests and 54 compiled native scenarios. Preparation, diagnostics export/redaction and package integrity checks passed. The captured 20-part car rejection and save-edited 88-part Scania configuration remain covered by the preceding validation. The refreshed interface keeps the existing vehicle choices and startup flow while separating utility buttons.
+v1.0.35 passed 115 controller tests, 36 launcher/update/language tests, 27 vehicle-policy tests and seven focused core-update regressions. The frozen package check passed for truck, bus and car modes, each with 63 compiled native scenarios. Cached preparation with the current enabled profile completed in 8.38 seconds without accessing the game process. Server entry with the updated core was confirmed without a kick before the language feature was added; the final language build passed package and preparation checks.
 
 Live checks confirmed startup, mod changes in the same profile, time/weather commands and free-camera teleport. With the `/car/` fix, the tested car joined the server without being kicked. Save-edited original parts remain covered by the reported 88-part configuration tests. Remote appearance for each setup still needs a second player's check; these results do not cover every mod.
 
@@ -141,7 +151,7 @@ Live checks confirmed startup, mod changes in the same profile, time/weather com
 | The report lists encrypted definitions | Those definitions were skipped during merging. Check whether the mod provides readable definitions; preparation does not ask for or recover passwords. |
 | The database changed after preparation | Prepare a new session. |
 | You want a different appearance for a mod | Exit the game and choose truck, bus or car before starting new watchers. |
-| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.34**, create a diagnostic ZIP, inspect it and share it with the mod name and failing step. |
+| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.35**, create a diagnostic ZIP, inspect it and share it with the mod name and failing step. |
 | A game or TruckersMP update changes the database format or code signatures | Check for a newer application version and report the error message. |
 
 ---
@@ -152,7 +162,15 @@ Live checks confirmed startup, mod changes in the same profile, time/weather com
 
 TruckersMP Mod, yerel ETS2 modlarını TruckersMP ile kullanmak ve oyun içindeki Mod Yöneticisi'ne erişmek için hazırlanmış bir masaüstü başlatıcısıdır.
 
-Kararlı **v1.0.34** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.34.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+Kararlı **v1.0.35** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.35.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+
+### v1.0.35'te yeni
+
+- **TR / EN** dil seçimi eklendi. Düğmeler, durum mesajları ve iletişim pencereleri anında değişir; seçilen dil sonraki açılış için kaydedilir.
+- 27 Ekim TruckersMP çekirdek güncellemesine uyumluluk eklendi. Hazırlığı durduran `database global: expected 1 hit, found 0` hatası düzeltildi. Yeni dosya kabul edilmeden önce veritabanının liste yapısı ve yedi aksesuar türü doğrulanıyor.
+- Kayıtlı etkin mod listesinde kalan silinmiş yerel paketler ve abonelikten çıkılmış Workshop öğeleri, dosyanın eksik olduğu doğrulanabiliyorsa artık hazırlığı durdurmuyor. Eksik girdiler raporlanıyor; profil düzenlenmiyor. Çift paketler, yarım kurulumlar ve bulunamayan Workshop klasörü ayrıca çözülmeli.
+- Kaynak araca ait farklı ek parça klasörleri için genel destek eklendi. Desteklenmeyen ek parçalar, yerel mod dosyaları veya kayıt değiştirilmeden karşıya gönderilen görünümden çıkarılabiliyor. Tanınan orijinal parçaların mevcut işlenişi korunuyor; temel parçaları eksik veya araç kökü belirsiz kurulumlarda uyarlama reddediliyor.
+- Oyunun kapanmasını algılama ve hata bildirimi iyileştirildi. Uyarlamadan sonraki hatalar, hazırlık hatası yerine oturum izlemesinin durması olarak gösteriliyor.
 
 ### v1.0.34'te yeni
 
@@ -160,7 +178,7 @@ Kararlı **v1.0.34** sürümünü [Releases](https://github.com/0xdemir/tmp-bypa
 - Başlangıç, hazırlık aşamaları, süreler ve hatalar için sınırlı boyutta dönen yerel JSONL günlükleri eklendi. **Tanılama ZIP’i oluştur** dışa aktarmadan önce onay ister ve kaydetme yerini sana seçtirir. Paket son oturumların durum/hata günlüklerini içerir; kullanıcı/profil yollarını ayıklar, profil kayıtlarını ve mod arşivlerini içermez. Mod adları veya Workshop numaraları bulunabilir; paylaşmadan önce ZIP’i incele. Paket otomatik yüklenmez.
 - Durum ve araç seçimi kartları netleştirildi; alt işlemlerin düğmeleri birbirinden ayrıldı.
 
-Eski EXE'lere güncelleme bildirimi uzaktan eklenemez. Sonraki sürümlerden haberdar olmak için v1.0.34'ü ilk kez elle indir.
+Eski EXE'lere güncelleme bildirimi uzaktan eklenemez. Sonraki sürümlerden haberdar olmak için v1.0.35'ü ilk kez elle indir.
 
 ### v1.0.33'te yeni
 
@@ -191,6 +209,8 @@ Bir tanım şifreliyse hazırlık raporuna yazılıyor ve tüm kaynaklarda o dos
 - Hazırlık, tüm yerel mod arşivi yerine etkin mod seçimini tarıyor. Derlenmiş v1.0.33 ile bir araba modu etkinken ve önbellek kullanılabilirken hazırlık 7,90 saniye sürdü. Süre, seçilen modlara ve önbelleğin durumuna bağlıdır.
 - v1.0.30'da araç seçeneklerinin üstüne, oyunun kendi araçlarının kendi marka ve modeliyle göründüğünü açıklayan metin eklendi.
 
+Silinen paketin atlanması, kayıt dosyasında o moda bağlı araç veya dorseleri onarmaz. Modu geçici olarak geri yükle, ona bağlı araç veya dorseleri oyundan kaldır ve yeniden silmeden önce kaydet.
+
 Uyumlu aksesuar veri tabanı (ADB) güncellemeleri otomatik algılanmaya devam eder. Veri tabanı hazırlık sırasında veya sonrasında değişirse yeni oturum hazırla. Veri tabanı biçimi ya da oyun/TruckersMP kod imzaları değişirse uygulama güncellemesi gerekebilir.
 
 ### Üç araç görünümü seçeneği nasıl çalışır?
@@ -215,7 +235,7 @@ Desteklenen vanilla tırlarda, TruckersMP'nin tanıdığı orijinal parçalar sa
 | --- | --- |
 | İşletim sistemi | 64-bit Windows |
 | Oyun | Kurulu ETS2; test edilen sürüm: **1.61.1.9s** |
-| Çok oyunculu | Kurulu resmî TruckersMP başlatıcısı; yerel core sürümü: **0.7.9.0** |
+| Çok oyunculu | Kurulu resmî TruckersMP başlatıcısı; yerel core sürümü: **0.7.9.2** |
 | Yetki | `TMP Mod.exe` yönetici olarak çalıştırılmalı |
 | Ek kurulum | Ek çalışma ortamı kurulumu gerekmez |
 
@@ -224,14 +244,14 @@ Desteklenen vanilla tırlarda, TruckersMP'nin tanıdığı orijinal parçalar sa
 1. Yeni oturum hazırlamadan önce ETS2'yi ve eski TMP Mod pencerelerini kapat.
 2. `TMP Mod.exe` dosyasını `%APPDATA%\TruckersMP` klasörüne yerleştir.
 3. `TMP Mod.exe` dosyasına sağ tıkla, **Yönetici olarak çalıştır** seçeneğini seç ve Windows izin penceresini onayla. Ardından yukarıda açıklanan araç görünümünü seç.
-4. **İzleyicileri başlat** düğmesine bas.
+4. Üst bölümden **TR** veya **EN** seç, ardından **İzleyicileri başlat** düğmesine bas.
 5. **OYNA için hazır** durumunu bekle.
 6. **TruckersMP’yi aç** düğmesine bas, ardından resmî başlatıcıda **OYNA** seçeneğini kullan.
 7. Modlarını ve aracını oyundan seç.
 
 Oyun sırasında etkin modları değiştirmek için hazırlanan aynı profili kullan, oyun içindeki Mod Yöneticisi'nde değişiklikleri uygula ve yüklemenin tamamlanmasını bekle. Başka profile geçerken yeni oturum hazırla.
 
-TMP Mod penceresini kapatmak etkin uyarlamayı durdurmaz. Oturumu bitirmek için oyundan çık. **Beklemeyi iptal et**, oyun başlamadan önce beklemeyi iptal eder. Başarısız bir çalıştırmayı incelemek için **Günlükleri aç** düğmesini kullan.
+TMP Mod penceresini kapatmak etkin uyarlamayı durdurmaz. Oturumu bitirmek için oyundan çık. **Beklemeyi iptal et**, oyun başlamadan önce beklemeyi iptal eder. Başarısız bir çalıştırmayı incelemek için **Günlükleri aç** düğmesini kullan. Dil seçimi yerel `TMP-Mod-settings.json` dosyasında saklanır ve sonraki açılışta geri yüklenir.
 
 ### Manuel konsol komutları
 
@@ -248,13 +268,13 @@ Konsol değişkenlerinin işlenmesi `g_brake_intensity` ve `g_trailer_stability`
 
 ### Antivirüs uyarıları ve izin verme
 
-Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity) bölümündeki değerle eşleştiğini kontrol et. Bağlantıdaki [VirusTotal raporu önceki v1.0.31 EXE dosyasına aittir](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.34'ün hash değeri farklıdır; incelediğin tarama raporunun indirdiğin dosyanın hash değeriyle eşleştiğini kontrol et.
+Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity) bölümündeki değerle eşleştiğini kontrol et. Bağlantıdaki [VirusTotal raporu önceki v1.0.31 EXE dosyasına aittir](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.35'ün hash değeri farklıdır; incelediğin tarama raporunun indirdiğin dosyanın hash değeriyle eşleştiğini kontrol et.
 
 Doğruladığın dosyaya güveniyor ve çalıştırmak istiyorsan antivirüsünün karantina veya koruma geçmişi ekranından bu dosyaya özel izin ver. Antivirüs korumasını açık tut. Rapor, bağlantıdaki hash değerine sahip EXE için geçerlidir; tarama sonuçları zamanla değişebilir ve güvenlik garantisi vermez.
 
 ### Kontroller ve sorun giderme
 
-v1.0.34 için 29 başlatıcı/güncelleme testi ve dondurulmuş paket kontrolü geçti. Paket içindeki 108 controller testi ve 54 derlenmiş native senaryo doğrulandı. Hazırlık, tanılama dışa aktarma/yol ayıklama ve paket bütünlüğü kontrolleri başarılı. Kaydedilen 20 parçalık araba reddi ile save edit yapılmış 88 parçalık Scania kurulumu önceki doğrulamada test edildi. Yeni arayüz aynı araç seçeneklerini ve başlatma akışını koruyor; alt işlemlerin düğmeleri artık ayrı.
+v1.0.35 için 115 controller testi, 36 başlatıcı/güncelleme/dil testi, 27 araç politikası testi ve yedi çekirdek güncelleme testi geçti. Dondurulmuş paket kontrolü tır, otobüs ve araba seçeneklerinin her birinde 63 derlenmiş native senaryoyla başarılı. Mevcut etkin profille önbellekli hazırlık, oyun sürecine erişmeden 8,38 saniyede tamamlandı. Dil özelliği eklenmeden önce yeni çekirdekle sunucuya atılmadan giriş doğrulandı; son dil eklenen derleme paket ve hazırlık kontrollerini geçti.
 
 Canlı testlerde başlangıç, aynı profilde mod değiştirme, saat/hava komutları ve serbest kamera ışınlanması doğrulandı. `/car/` düzeltmesinden sonra denenen araba sunucuya atılmadan girdi. Save edit ile takılan orijinal parçalar, bildirilen 88 parçalık kurulumun testleriyle korunuyor. Her kurulumun karşı oyuncudaki görünümü için ikinci oyuncuyla kontrol gerekir; bu sonuçlar tüm modları kapsamaz.
 
@@ -265,7 +285,7 @@ Canlı testlerde başlangıç, aynı profilde mod değiştirme, saat/hava komutl
 | Raporda şifreli tanımlar var | Bu tanımların birleştirmesi atlandı. Modun okunabilir tanımlar sunup sunmadığını kontrol et; hazırlık şifre istemez veya şifre kurtarmaz. |
 | Hazırlıktan sonra veri tabanı değişti | Yeni oturum hazırla. |
 | Modun karşı taraftaki görünümünü değiştirmek istiyorsun | Oyundan çık ve yeni izleyicileri başlatmadan önce tır, otobüs veya araba seç. |
-| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.34** kullandığını kontrol et; Tanılama ZIP’i oluştur, içeriğini incele ve mod adıyla hatanın oluştuğu adımı paylaş. |
+| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.35** kullandığını kontrol et; Tanılama ZIP’i oluştur, içeriğini incele ve mod adıyla hatanın oluştuğu adımı paylaş. |
 | Oyun veya TruckersMP güncellemesi veri tabanı biçimini ya da kod imzalarını değiştirdi | Yeni uygulama sürümünü kontrol et ve hata mesajını bildir. |
 
 ---
@@ -274,18 +294,18 @@ Canlı testlerde başlangıç, aynı profilde mod değiştirme, saat/hava komutl
 
 ## File integrity / Dosya bütünlüğü
 
-**TruckersMP Mod 1.0.34** · **13,163,520 bytes / bayt**
+**TruckersMP Mod 1.0.35** · **13,192,704 bytes / bayt**
 
 EXE SHA-256:
 
 ~~~text
-2a327494dd426529a2a884099debed12e7a9f9387fd3f201cacff66fa43200c3
+9ab7a6976123894396b7bb9d3efda34b256288c81a69deca2795deceac7f2cef
 ~~~
 
-ZIP SHA-256 (`TMP-Mod-1.0.34.zip`, 13,057,246 bytes / bayt):
+ZIP SHA-256 (`TMP-Mod-1.0.35.zip`, 13,078,190 bytes / bayt):
 
 ~~~text
-6893e5ef2d3dbb0ca924c153648db78375cda2edd6846d95bf5b4c0e6f3cec41
+7b4cb92c5dd485d44648d7d4e66586c489ca074bae6efdacd4b129844a84fbdc
 ~~~
 
 ~~~powershell

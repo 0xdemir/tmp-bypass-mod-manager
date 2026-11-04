@@ -10,11 +10,11 @@ Local mods and vehicle compatibility for Euro Truck Simulator 2.
 
 Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
-![Version](https://img.shields.io/badge/version-1.0.35-27c8bb)
+![Version](https://img.shields.io/badge/version-1.0.36-27c8bb)
 ![Platform](https://img.shields.io/badge/platform-Windows_x64-0078d4)
 ![Distribution](https://img.shields.io/badge/distribution-single_EXE-555555)
 
-**[Download v1.0.35 / v1.0.35 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.35/TMP.Mod.exe)**
+**[Download v1.0.36 / v1.0.36 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.36/TMP.Mod.exe)**
 
 [English](#english) · [Türkçe](#turkce)
 
@@ -28,7 +28,16 @@ Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
 TruckersMP Mod is a desktop launcher for using local ETS2 mods with TruckersMP and accessing the in-game Mod Manager.
 
-Download stable **v1.0.35** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.35.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+Download stable **v1.0.36** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.36.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+
+### New in v1.0.36
+
+- Damaged core-map caches are rebuilt from the installed TruckersMP DLL. Cache entries also have to match the actual code bytes and image layout; a cache write failure no longer discards a successful resolution.
+- Preparation no longer reports a failure just because its elevated worker takes more than 60 seconds. It waits for the worker to finish and uses its exit result.
+- A CRC-damaged definition in a ZIP mod no longer stops the entire merge plan. The affected definition is reported and excluded from merging across sources; unrelated readable definitions can still be processed.
+- Diagnostic records stay within 32 KiB even with nested details. Diagnostic export reads only the bounded tail of each log, so large logs do not have to be loaded entirely into memory.
+
+These fixes retain the TR / EN interface and the three vehicle appearance choices. This release does not claim to fix loading-screen crashes caused by failed memory allocation (`std::bad_alloc`).
 
 ### New in v1.0.35
 
@@ -44,7 +53,7 @@ Download stable **v1.0.35** from [Releases](https://github.com/0xdemir/tmp-bypas
 - Added bounded, rotating local JSONL diagnostics for startup, preparation stages, durations and errors. **Create diagnostic ZIP** asks before exporting and lets you choose where to save it. The bundle includes recent run status/error logs, removes user/profile paths, and excludes profile saves and mod archives. Mod names or Workshop IDs may appear; inspect the ZIP before sharing. It is never uploaded automatically.
 - Refined the launcher layout, including clearer status and vehicle-choice cards and separated utility buttons.
 
-Older EXEs cannot gain update notifications remotely. Download v1.0.35 manually once to receive notices about future releases.
+Older EXEs cannot gain update notifications remotely. Download v1.0.36 manually once to receive notices about future releases.
 
 ### New in v1.0.33
 
@@ -101,7 +110,7 @@ On supported stock trucks, original parts already recognized by TruckersMP keep 
 | --- | --- |
 | Operating system | 64-bit Windows |
 | Game | Installed ETS2; tested build: **1.61.1.9s** |
-| Multiplayer | Installed official TruckersMP launcher; local core version: **0.7.9.2** |
+| Multiplayer | Installed official TruckersMP launcher; local core version: **0.7.9.6** |
 | Permissions | Run `TMP Mod.exe` as administrator |
 | Extra installation | No additional runtime installation required |
 
@@ -134,24 +143,25 @@ Console variable handling also covers values such as `g_brake_intensity` and `g_
 
 ### Antivirus alerts and permissions
 
-If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity). The linked [VirusTotal report covers the previous v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.35 has a different hash; check any scan report against the hash of your downloaded file.
+If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity). The linked [VirusTotal report covers the previous v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.36 has a different hash; check any scan report against the hash of your downloaded file.
 
 If you trust the verified file and decide to run it, allow that specific file through your antivirus's quarantine or protection history screen. Keep antivirus protection enabled. The report applies to the EXE with the linked hash; scan results can change and do not guarantee safety.
 
 ### Checks and troubleshooting
 
-v1.0.35 passed 115 controller tests, 36 launcher/update/language tests, 27 vehicle-policy tests and seven focused core-update regressions. The frozen package check passed for truck, bus and car modes, each with 63 compiled native scenarios. Cached preparation with the current enabled profile completed in 8.38 seconds without accessing the game process. Server entry with the updated core was confirmed without a kick before the language feature was added; the final language build passed package and preparation checks.
+The fixes passed 218 Python tests, 23 menu/process test groups, 63 native projection cases and 73 native merge checks. An independent code review passed. The v1.0.36 rebuild passed 33 launcher/update tests and frozen package checks for truck, bus and car. Offline preparation was checked without starting watchers or accessing the game process. These automated results do not establish a fresh live-server test of v1.0.36.
 
-Live checks confirmed startup, mod changes in the same profile, time/weather commands and free-camera teleport. With the `/car/` fix, the tested car joined the server without being kicked. Save-edited original parts remain covered by the reported 88-part configuration tests. Remote appearance for each setup still needs a second player's check; these results do not cover every mod.
+Earlier live checks confirmed startup, mod changes in the same profile, time/weather commands and free-camera teleport. With the `/car/` fix, the tested car joined the server without being kicked. Save-edited original parts remain covered by the reported 88-part configuration tests. Remote appearance for each setup still needs a second player's check; these results do not cover every mod.
 
 | Symptom | Next step |
 | --- | --- |
+| Loading closes the game with `std::bad_alloc` / `bad allocation` | A memory allocation failed. Free memory from unneeded applications and retry with the same setup. If it repeats, share diagnostics and the latest game crash log. |
 | The game is already running | Close ETS2, start the watchers, then launch a new session. |
 | Preparation takes longer after changing mods | Allow the content scan to finish; later launches can reuse the cache. |
 | The report lists encrypted definitions | Those definitions were skipped during merging. Check whether the mod provides readable definitions; preparation does not ask for or recover passwords. |
 | The database changed after preparation | Prepare a new session. |
 | You want a different appearance for a mod | Exit the game and choose truck, bus or car before starting new watchers. |
-| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.35**, create a diagnostic ZIP, inspect it and share it with the mod name and failing step. |
+| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.36**, create a diagnostic ZIP, inspect it and share it with the mod name and failing step. |
 | A game or TruckersMP update changes the database format or code signatures | Check for a newer application version and report the error message. |
 
 ---
@@ -162,7 +172,16 @@ Live checks confirmed startup, mod changes in the same profile, time/weather com
 
 TruckersMP Mod, yerel ETS2 modlarını TruckersMP ile kullanmak ve oyun içindeki Mod Yöneticisi'ne erişmek için hazırlanmış bir masaüstü başlatıcısıdır.
 
-Kararlı **v1.0.35** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.35.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+Kararlı **v1.0.36** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.36.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+
+### v1.0.36'da yeni
+
+- Bozuk çekirdek eşleme önbelleği, kurulu TruckersMP DLL dosyasından yeniden oluşturuluyor. Önbellekteki kayıtlar gerçek kod baytları ve dosya yerleşimiyle de doğrulanıyor; önbelleğe yazılamaması başarılı çözümlemeyi iptal etmiyor.
+- Yönetici yetkili hazırlık işlemi 60 saniyeyi aşınca artık yanlışlıkla başarısız sayılmıyor. İşlemin bitmesi bekleniyor ve gerçek çıkış sonucu kullanılıyor.
+- ZIP modundaki CRC hatalı bir tanım artık bütün birleştirme planını durdurmuyor. Sorunlu tanım raporlanıp tüm kaynaklarda birleştirme dışında tutuluyor; diğer okunabilir tanımlar işlenebiliyor.
+- İç içe ayrıntılar içeren tanılama kayıtları da 32 KiB sınırında kalıyor. Tanılama ZIP'i hazırlanırken büyük günlüklerin tamamı yerine yalnız sınırlı son bölümleri okunuyor.
+
+TR / EN arayüz ve üç araç görünümü seçeneği korunuyor. Bu sürüm, bellek ayırma hatasından (`std::bad_alloc`) kaynaklanan yükleme ekranı çökmelerini giderdiği iddiasını taşımıyor.
 
 ### v1.0.35'te yeni
 
@@ -178,7 +197,7 @@ Kararlı **v1.0.35** sürümünü [Releases](https://github.com/0xdemir/tmp-bypa
 - Başlangıç, hazırlık aşamaları, süreler ve hatalar için sınırlı boyutta dönen yerel JSONL günlükleri eklendi. **Tanılama ZIP’i oluştur** dışa aktarmadan önce onay ister ve kaydetme yerini sana seçtirir. Paket son oturumların durum/hata günlüklerini içerir; kullanıcı/profil yollarını ayıklar, profil kayıtlarını ve mod arşivlerini içermez. Mod adları veya Workshop numaraları bulunabilir; paylaşmadan önce ZIP’i incele. Paket otomatik yüklenmez.
 - Durum ve araç seçimi kartları netleştirildi; alt işlemlerin düğmeleri birbirinden ayrıldı.
 
-Eski EXE'lere güncelleme bildirimi uzaktan eklenemez. Sonraki sürümlerden haberdar olmak için v1.0.35'ü ilk kez elle indir.
+Eski EXE'lere güncelleme bildirimi uzaktan eklenemez. Sonraki sürümlerden haberdar olmak için v1.0.36'yı ilk kez elle indir.
 
 ### v1.0.33'te yeni
 
@@ -235,7 +254,7 @@ Desteklenen vanilla tırlarda, TruckersMP'nin tanıdığı orijinal parçalar sa
 | --- | --- |
 | İşletim sistemi | 64-bit Windows |
 | Oyun | Kurulu ETS2; test edilen sürüm: **1.61.1.9s** |
-| Çok oyunculu | Kurulu resmî TruckersMP başlatıcısı; yerel core sürümü: **0.7.9.2** |
+| Çok oyunculu | Kurulu resmî TruckersMP başlatıcısı; yerel core sürümü: **0.7.9.6** |
 | Yetki | `TMP Mod.exe` yönetici olarak çalıştırılmalı |
 | Ek kurulum | Ek çalışma ortamı kurulumu gerekmez |
 
@@ -268,24 +287,25 @@ Konsol değişkenlerinin işlenmesi `g_brake_intensity` ve `g_trailer_stability`
 
 ### Antivirüs uyarıları ve izin verme
 
-Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity) bölümündeki değerle eşleştiğini kontrol et. Bağlantıdaki [VirusTotal raporu önceki v1.0.31 EXE dosyasına aittir](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.35'ün hash değeri farklıdır; incelediğin tarama raporunun indirdiğin dosyanın hash değeriyle eşleştiğini kontrol et.
+Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity) bölümündeki değerle eşleştiğini kontrol et. Bağlantıdaki [VirusTotal raporu önceki v1.0.31 EXE dosyasına aittir](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.36'nın hash değeri farklıdır; incelediğin tarama raporunun indirdiğin dosyanın hash değeriyle eşleştiğini kontrol et.
 
 Doğruladığın dosyaya güveniyor ve çalıştırmak istiyorsan antivirüsünün karantina veya koruma geçmişi ekranından bu dosyaya özel izin ver. Antivirüs korumasını açık tut. Rapor, bağlantıdaki hash değerine sahip EXE için geçerlidir; tarama sonuçları zamanla değişebilir ve güvenlik garantisi vermez.
 
 ### Kontroller ve sorun giderme
 
-v1.0.35 için 115 controller testi, 36 başlatıcı/güncelleme/dil testi, 27 araç politikası testi ve yedi çekirdek güncelleme testi geçti. Dondurulmuş paket kontrolü tır, otobüs ve araba seçeneklerinin her birinde 63 derlenmiş native senaryoyla başarılı. Mevcut etkin profille önbellekli hazırlık, oyun sürecine erişmeden 8,38 saniyede tamamlandı. Dil özelliği eklenmeden önce yeni çekirdekle sunucuya atılmadan giriş doğrulandı; son dil eklenen derleme paket ve hazırlık kontrollerini geçti.
+Düzeltmeler 218 Python testi, 23 menü/süreç test grubu, 63 native araç uyarlama senaryosu ve 73 native birleştirme kontrolünü geçti. Bağımsız kod incelemesi başarılı. 1.0.36 derlemesinde 33 başlatıcı/güncelleme testi ile tır, otobüs ve araba için derlenmiş paket kontrolleri geçti. Çevrimdışı hazırlık, izleyiciler başlatılmadan ve oyun sürecine erişilmeden kontrol edildi. Bu otomatik sonuçlar, 1.0.36 ile yeni bir canlı sunucu testinin yapıldığı anlamına gelmez.
 
-Canlı testlerde başlangıç, aynı profilde mod değiştirme, saat/hava komutları ve serbest kamera ışınlanması doğrulandı. `/car/` düzeltmesinden sonra denenen araba sunucuya atılmadan girdi. Save edit ile takılan orijinal parçalar, bildirilen 88 parçalık kurulumun testleriyle korunuyor. Her kurulumun karşı oyuncudaki görünümü için ikinci oyuncuyla kontrol gerekir; bu sonuçlar tüm modları kapsamaz.
+Önceki canlı testlerde başlangıç, aynı profilde mod değiştirme, saat/hava komutları ve serbest kamera ışınlanması doğrulandı. `/car/` düzeltmesinden sonra denenen araba sunucuya atılmadan girdi. Save edit ile takılan orijinal parçalar, bildirilen 88 parçalık kurulumun testleriyle korunuyor. Her kurulumun karşı oyuncudaki görünümü için ikinci oyuncuyla kontrol gerekir; bu sonuçlar tüm modları kapsamaz.
 
 | Durum | Yapılacak işlem |
 | --- | --- |
+| Yüklemede `std::bad_alloc` / `bad allocation` ile kapanıyor | Bellek ayırma başarısız oldu. Gereksiz uygulamaları kapatıp aynı kurulumla tekrar dene. Tekrarlarsa tanılama paketiyle son oyun çökme günlüğünü paylaş. |
 | Oyun zaten açık | ETS2'yi kapat, izleyicileri başlat ve yeni bir oyun oturumu aç. |
 | Mod değişikliğinden sonra hazırlık uzun sürüyor | İçerik taramasının tamamlanmasını bekle; sonraki açılışlar önbelleği kullanabilir. |
 | Raporda şifreli tanımlar var | Bu tanımların birleştirmesi atlandı. Modun okunabilir tanımlar sunup sunmadığını kontrol et; hazırlık şifre istemez veya şifre kurtarmaz. |
 | Hazırlıktan sonra veri tabanı değişti | Yeni oturum hazırla. |
 | Modun karşı taraftaki görünümünü değiştirmek istiyorsun | Oyundan çık ve yeni izleyicileri başlatmadan önce tır, otobüs veya araba seç. |
-| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.35** kullandığını kontrol et; Tanılama ZIP’i oluştur, içeriğini incele ve mod adıyla hatanın oluştuğu adımı paylaş. |
+| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.36** kullandığını kontrol et; Tanılama ZIP’i oluştur, içeriğini incele ve mod adıyla hatanın oluştuğu adımı paylaş. |
 | Oyun veya TruckersMP güncellemesi veri tabanı biçimini ya da kod imzalarını değiştirdi | Yeni uygulama sürümünü kontrol et ve hata mesajını bildir. |
 
 ---
@@ -294,18 +314,18 @@ Canlı testlerde başlangıç, aynı profilde mod değiştirme, saat/hava komutl
 
 ## File integrity / Dosya bütünlüğü
 
-**TruckersMP Mod 1.0.35** · **13,192,704 bytes / bayt**
+**TruckersMP Mod 1.0.36** · **13,239,808 bytes / bayt**
 
 EXE SHA-256:
 
 ~~~text
-9ab7a6976123894396b7bb9d3efda34b256288c81a69deca2795deceac7f2cef
+ff156e15edd2bae2cc0427b87cd95d93857b2186268d0e49e88a440fdbf0f1ce
 ~~~
 
-ZIP SHA-256 (`TMP-Mod-1.0.35.zip`, 13,078,190 bytes / bayt):
+ZIP SHA-256 (`TMP-Mod-1.0.36.zip`, 13,119,404 bytes / bayt):
 
 ~~~text
-7b4cb92c5dd485d44648d7d4e66586c489ca074bae6efdacd4b129844a84fbdc
+8e9f238a048b0cd6db43cb942bbad984e5ea58478f700aa0ecd10744c3298492
 ~~~
 
 ~~~powershell

@@ -10,11 +10,11 @@ Local mods and vehicle compatibility for Euro Truck Simulator 2.
 
 Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
-![Version](https://img.shields.io/badge/version-1.0.37-27c8bb)
+![Version](https://img.shields.io/badge/version-1.0.38-27c8bb)
 ![Platform](https://img.shields.io/badge/platform-Windows_x64-0078d4)
 ![Distribution](https://img.shields.io/badge/distribution-single_EXE-555555)
 
-**[Download v1.0.37 / v1.0.37 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.37/TMP.Mod.exe)**
+**[Download v1.0.38 / v1.0.38 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.38/TMP.Mod.exe)**
 
 [English](#english) · [Türkçe](#turkce)
 
@@ -28,7 +28,14 @@ Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
 TruckersMP Mod is a desktop launcher for using local ETS2 mods with TruckersMP and accessing the in-game Mod Manager.
 
-Download stable **v1.0.37** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.37.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+Download stable **v1.0.38** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.38.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+
+### New in v1.0.38
+
+- Improved how original parts moved between vanilla vehicles with save editing appear to other players.
+- Uses **367,447 verified visual mappings** for **22,707 eligible parts** extracted from the game archives. Matching is based on each part's actual **PMD model identity**, not just its filename.
+- Known parts without a verified visual equivalent are preserved; paint, wheels, part order and attachment data are not changed.
+- Two-player live visual verification and live-server acceptance have not been established. Correct rendering is not guaranteed for every part combination.
 
 ### New in v1.0.37
 
@@ -61,7 +68,7 @@ These fixes retain the TR / EN interface and the three vehicle appearance choice
 - Added bounded, rotating local JSONL diagnostics for startup, preparation stages, durations and errors. **Create diagnostic ZIP** asks before exporting and lets you choose where to save it. The bundle includes recent run status/error logs, removes user/profile paths, and excludes profile saves and mod archives. Mod names or Workshop IDs may appear; inspect the ZIP before sharing. It is never uploaded automatically.
 - Refined the launcher layout, including clearer status and vehicle-choice cards and separated utility buttons.
 
-Older EXEs cannot gain update notifications remotely. Download v1.0.37 manually once to receive notices about future releases.
+Older EXEs cannot gain update notifications remotely. Download v1.0.38 manually once to receive notices about future releases.
 
 ### New in v1.0.33
 
@@ -74,9 +81,9 @@ Older EXEs cannot gain update notifications remotely. Download v1.0.37 manually 
 
 ### Original parts and save editing
 
-Known original parts attached from other vehicle models through save editing now keep their identity on supported stock trucks. Earlier versions could replace them with the truck's defaults or omit them. Part order, repeated parts and attachment data are preserved. Unsupported local mod vehicles continue to use the selected truck, bus or car appearance.
+On supported stock trucks, an original part from another vanilla model is mapped only when a part on the target vehicle is verified to use the same PMD model in the same category. Same-named parts with different PMD models are not treated as equivalents. Known parts without a verified equivalent are preserved. Part order, repeated parts and attachment data are retained; unsupported local mod vehicles continue to use the selected truck, bus or car appearance.
 
-Replaying a reported Scania S configuration now preserves all 88 parts; previously, 19 were replaced and two were omitted. Checks cover the 26 supported truck models in the current database with all three appearance choices. Live multiplayer rendering of this update still needs confirmation.
+The current table contains 367,447 mappings for 22,707 eligible parts, including 285 unique mappings with different filenames. Tests cover all 26 supported truck models and the three appearance choices. Two-player live visual confirmation is still required for specific combinations.
 
 ### New in v1.0.31
 
@@ -151,13 +158,13 @@ Console variable handling also covers values such as `g_brake_intensity` and `g_
 
 ### Antivirus alerts and permissions
 
-If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity). The linked [VirusTotal report covers the previous v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.37 has a different hash; check any scan report against the hash of your downloaded file.
+If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity). The linked [VirusTotal report covers the previous v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.38 has a different hash; check any scan report against the hash of your downloaded file.
 
 If you trust the verified file and decide to run it, allow that specific file through your antivirus's quarantine or protection history screen. Keep antivirus protection enabled. The report applies to the EXE with the linked hash; scan results can change and do not guarantee safety.
 
 ### Checks and troubleshooting
 
-The update passed 145/145 controller/core tests, 39/39 launcher/language/update tests and 23/23 menu/process groups. The frozen package revalidated 63 recorded native scenarios; truck, bus and car `--prepare-only` checks passed. Live startup reached PLAY, but live-server acceptance was not established. These results do not establish a fix for the observed game memory-allocation crashes.
+The update passed 145/145 controller/core tests, 39/39 launcher/language/update tests and 30/30 visual-projection tests. The native policy passed 68 cases for each of truck, bus and car. The frozen 1.0.38 package passed payload validation and all three `--prepare-only` checks without starting the game or accessing a game process. Two-player live visual verification and live-server acceptance remain unverified; these results do not establish a fix for the observed game memory-allocation crashes.
 
 Earlier live checks confirmed startup, mod changes in the same profile, time/weather commands and free-camera teleport. With the `/car/` fix, the tested car joined the server without being kicked. Save-edited original parts remain covered by the reported 88-part configuration tests. Remote appearance for each setup still needs a second player's check; these results do not cover every mod.
 
@@ -170,7 +177,7 @@ Earlier live checks confirmed startup, mod changes in the same profile, time/wea
 | The report lists encrypted definitions | Those definitions were skipped during merging. Check whether the mod provides readable definitions; preparation does not ask for or recover passwords. |
 | The database changed after preparation | Prepare a new session. |
 | You want a different appearance for a mod | Exit the game and choose truck, bus or car before starting new watchers. |
-| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.37**, create a diagnostic ZIP, inspect it and share it with the mod name and failing step. |
+| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.38**, create a diagnostic ZIP, inspect it and share it with the mod name and failing step. |
 | A game or TruckersMP update changes the database format or code signatures | Check for a newer application version and report the error message. |
 
 ---
@@ -181,7 +188,14 @@ Earlier live checks confirmed startup, mod changes in the same profile, time/wea
 
 TruckersMP Mod, yerel ETS2 modlarını TruckersMP ile kullanmak ve oyun içindeki Mod Yöneticisi'ne erişmek için hazırlanmış bir masaüstü başlatıcısıdır.
 
-Kararlı **v1.0.37** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.37.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+Kararlı **v1.0.38** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.38.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+
+### v1.0.38'de yeni
+
+- Vanilla araçlar arasında save edit ile takılan orijinal parçaların karşı oyuncudaki görünümü iyileştirildi.
+- Oyun arşivlerinden çıkarılan **22.707 uygun parça** için **367.447 doğrulanmış görsel eşleme** kullanılıyor. Eşleme yalnız dosya adına göre değil, parçanın kullandığı gerçek **PMD model kimliğine** göre yapılıyor.
+- Görsel karşılığı doğrulanamayan veya bulunamayan bilinen parçalar korunuyor; boya, tekerlek, parça sırası ve ek nesne verileri değiştirilmiyor.
+- İki oyunculu canlı görsel doğrulama ve canlı sunucu kabulü henüz doğrulanmadı. Her parça kombinasyonunun doğru görüneceği garanti edilmiyor.
 
 ### v1.0.37'de yeni
 
@@ -214,7 +228,7 @@ TR / EN arayüz ve üç araç görünümü seçeneği korunuyor. Bu sürüm, bel
 - Başlangıç, hazırlık aşamaları, süreler ve hatalar için sınırlı boyutta dönen yerel JSONL günlükleri eklendi. **Tanılama ZIP’i oluştur** dışa aktarmadan önce onay ister ve kaydetme yerini sana seçtirir. Paket son oturumların durum/hata günlüklerini içerir; kullanıcı/profil yollarını ayıklar, profil kayıtlarını ve mod arşivlerini içermez. Mod adları veya Workshop numaraları bulunabilir; paylaşmadan önce ZIP’i incele. Paket otomatik yüklenmez.
 - Durum ve araç seçimi kartları netleştirildi; alt işlemlerin düğmeleri birbirinden ayrıldı.
 
-Eski EXE'lere güncelleme bildirimi uzaktan eklenemez. Sonraki sürümlerden haberdar olmak için v1.0.37'yi ilk kez elle indir.
+Eski EXE'lere güncelleme bildirimi uzaktan eklenemez. Sonraki sürümlerden haberdar olmak için v1.0.38'yi ilk kez elle indir.
 
 ### v1.0.33'te yeni
 
@@ -227,9 +241,9 @@ Eski EXE'lere güncelleme bildirimi uzaktan eklenemez. Sonraki sürümlerden hab
 
 ### Orijinal parçalar ve save edit
 
-Save edit ile başka araç modellerinden takılan tanınan orijinal parçalar, desteklenen vanilla tırlarda artık kendi kimlikleriyle gönderiliyor. Önceki sürümler bunları tırın varsayılan parçalarına çevirebiliyor veya çıkarabiliyordu. Parça sırası, tekrarlanan parçalar ve slot bağlantıları korunuyor. Desteklenmeyen yerel modlu araçlar seçilen tır, otobüs veya araba görünümünü kullanmaya devam ediyor.
+Desteklenen vanilla tırlarda, başka bir vanilla modelden takılan orijinal parça yalnız hedef araçtaki bir parçanın aynı kategoride aynı PMD modelini kullandığı doğrulanırsa eşleniyor. Dosya adı aynı olsa bile PMD modeli farklı parçalar eşdeğer sayılmıyor. Doğrulanmış karşılığı olmayan bilinen parçalar korunuyor. Parça sırası, tekrarlanan parçalar ve slot bağlantıları korunuyor; desteklenmeyen yerel modlu araçlar seçilen tır, otobüs veya araba görünümünü kullanmaya devam ediyor.
 
-Oyuncunun bildirdiği Scania S kaydını yeniden işlediğimizde 88 parçanın tamamı korunuyor; önceden 19 parça değiştiriliyor, ikisi çıkarılıyordu. Mevcut veri tabanındaki 26 desteklenen tır modeli üç görünüm seçeneğiyle kontrol edildi. Bu güncellemenin karşı oyuncudaki görüntüsü için canlı doğrulama bekleniyor.
+Geçerli tabloda 22.707 uygun parça için 367.447 eşleme bulunuyor; bunların 285'i farklı dosya adları arasında benzersiz eşleme. Testler mevcut veri tabanındaki 26 desteklenen tır modelini ve üç görünüm seçeneğini kapsıyor. Belirli kombinasyonların karşı oyuncudaki görüntüsü için iki oyunculu canlı doğrulama gerekiyor.
 
 ### v1.0.31'de yeni
 
@@ -304,13 +318,13 @@ Konsol değişkenlerinin işlenmesi `g_brake_intensity` ve `g_trailer_stability`
 
 ### Antivirüs uyarıları ve izin verme
 
-Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity) bölümündeki değerle eşleştiğini kontrol et. Bağlantıdaki [VirusTotal raporu önceki v1.0.31 EXE dosyasına aittir](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.37'nin hash değeri farklıdır; incelediğin tarama raporunun indirdiğin dosyanın hash değeriyle eşleştiğini kontrol et.
+Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity) bölümündeki değerle eşleştiğini kontrol et. Bağlantıdaki [VirusTotal raporu önceki v1.0.31 EXE dosyasına aittir](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.38'nin hash değeri farklıdır; incelediğin tarama raporunun indirdiğin dosyanın hash değeriyle eşleştiğini kontrol et.
 
 Doğruladığın dosyaya güveniyor ve çalıştırmak istiyorsan antivirüsünün karantina veya koruma geçmişi ekranından bu dosyaya özel izin ver. Antivirüs korumasını açık tut. Rapor, bağlantıdaki hash değerine sahip EXE için geçerlidir; tarama sonuçları zamanla değişebilir ve güvenlik garantisi vermez.
 
 ### Kontroller ve sorun giderme
 
-Güncelleme 145/145 controller/core testini, 39/39 başlatıcı/dil/güncelleme testini ve 23/23 menü/süreç grubunu geçti. Derlenmiş paket içinden 63 kayıtlı native senaryo yeniden doğrulandı; tır, otobüs ve araba `--prepare-only` kontrolleri geçti. Canlı başlangıç PLAY aşamasına ulaştı ancak canlı sunucu kabulü doğrulanmadı. Bu sonuçlar, gözlenen oyun bellek ayırma çökmelerinin giderildiğini göstermez.
+Güncelleme 145/145 controller/core testini, 39/39 başlatıcı/dil/güncelleme testini ve 30/30 görsel projeksiyon testini geçti. Native politika tır, otobüs ve araba seçimlerinin her biri için 68 vakayı geçti. Derlenmiş 1.0.38 paketi bütünlük doğrulamasını ve üç `--prepare-only` kontrolünü oyunu başlatmadan veya oyun sürecine erişmeden geçti. İki oyunculu canlı görsel doğrulama ve canlı sunucu kabulü henüz doğrulanmadı; bu sonuçlar, gözlenen oyun bellek ayırma çökmelerinin giderildiğini göstermez.
 
 Önceki canlı testlerde başlangıç, aynı profilde mod değiştirme, saat/hava komutları ve serbest kamera ışınlanması doğrulandı. `/car/` düzeltmesinden sonra denenen araba sunucuya atılmadan girdi. Save edit ile takılan orijinal parçalar, bildirilen 88 parçalık kurulumun testleriyle korunuyor. Her kurulumun karşı oyuncudaki görünümü için ikinci oyuncuyla kontrol gerekir; bu sonuçlar tüm modları kapsamaz.
 
@@ -323,7 +337,7 @@ Güncelleme 145/145 controller/core testini, 39/39 başlatıcı/dil/güncelleme 
 | Raporda şifreli tanımlar var | Bu tanımların birleştirmesi atlandı. Modun okunabilir tanımlar sunup sunmadığını kontrol et; hazırlık şifre istemez veya şifre kurtarmaz. |
 | Hazırlıktan sonra veri tabanı değişti | Yeni oturum hazırla. |
 | Modun karşı taraftaki görünümünü değiştirmek istiyorsun | Oyundan çık ve yeni izleyicileri başlatmadan önce tır, otobüs veya araba seç. |
-| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.37** kullandığını kontrol et; Tanılama ZIP’i oluştur, içeriğini incele ve mod adıyla hatanın oluştuğu adımı paylaş. |
+| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.38** kullandığını kontrol et; Tanılama ZIP’i oluştur, içeriğini incele ve mod adıyla hatanın oluştuğu adımı paylaş. |
 | Oyun veya TruckersMP güncellemesi veri tabanı biçimini ya da kod imzalarını değiştirdi | Yeni uygulama sürümünü kontrol et ve hata mesajını bildir. |
 
 ---
@@ -332,18 +346,18 @@ Güncelleme 145/145 controller/core testini, 39/39 başlatıcı/dil/güncelleme 
 
 ## File integrity / Dosya bütünlüğü
 
-**TruckersMP Mod 1.0.37** · **13,941,248 bytes / bayt**
+**TruckersMP Mod 1.0.38** · **15,308,800 bytes / bayt**
 
 EXE SHA-256:
 
 ~~~text
-fbdeb268f5ccb93e6f0c07c402b1a18a9e5f25dc7403436747c407a0a263ebfa
+8f80a527d122e5a40afccd05941f6757a94b6f0c3e1be60c64cedec11bc38a1a
 ~~~
 
-ZIP SHA-256 (`TMP-Mod-1.0.37.zip`, 13,832,733 bytes / bayt):
+ZIP SHA-256 (`TMP-Mod-1.0.38.zip`, 15,123,009 bytes / bayt):
 
 ~~~text
-c3b5927a8b8df077c0a1a7478cebf382a213ca6e63568a771acc7e596d8af380
+cbd5408a7bddee05d5a958b667560bb132e428ffbf806d056c2ac2266ade2676
 ~~~
 
 ~~~powershell

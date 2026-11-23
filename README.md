@@ -10,11 +10,11 @@ Local mods and vehicle compatibility for Euro Truck Simulator 2.
 
 Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
-![Version](https://img.shields.io/badge/version-1.0.38-27c8bb)
+![Version](https://img.shields.io/badge/version-1.0.39-27c8bb)
 ![Platform](https://img.shields.io/badge/platform-Windows_x64-0078d4)
 ![Distribution](https://img.shields.io/badge/distribution-single_EXE-555555)
 
-**[Download v1.0.38 / v1.0.38 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.38/TMP.Mod.exe)**
+**[Download v1.0.39 / v1.0.39 indir](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/download/v1.0.39/TMP.Mod.exe)**
 
 [English](#english) · [Türkçe](#turkce)
 
@@ -28,7 +28,17 @@ Euro Truck Simulator 2 için yerel modlar ve araç uyumluluğu.
 
 TruckersMP Mod is a desktop launcher for using local ETS2 mods with TruckersMP and accessing the in-game Mod Manager.
 
-Download stable **v1.0.38** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.38.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+Download stable **v1.0.39** from [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest). Save `TMP.Mod.exe` as `TMP Mod.exe`, or extract `TMP-Mod-1.0.39.zip`. Both contain the same application. A [repository copy](TMP%20Mod.exe) is also available. No separate compatibility mod is required.
+
+### New in v1.0.39
+
+- **Preparation timeout fixed.** The launcher waits up to 90 seconds for a watcher to publish its first state (it was 25). Cold-start measurements on a clean cache were 16.0 s for the game-image scan and 9.0 s for the core scan, and the worker performed that work again on every launch, so the old budget was routinely exhausted while the game itself was healthy. The timeout message now also states the budget.
+- **Game hook sites are cached per game build.** The resolved sites are stored under the game executable's SHA-256, so a game update can never reuse stale RVAs, and they are still cross-validated against the absolute hook targets inside the core DLL. Warm resolution dropped from 16.5 s to 0.08 s and the watcher start path to 4.3 s.
+- **Diagnostic ZIPs no longer drop the failure.** Redaction previously cut records at 20,000 characters from the start while the exporter read the tail of the file, so the newest entries never reached the bundle and the archive ended mid-record. Exports now keep the newest records, mark omitted lines and never ship a partial record.
+- **`database global` failures are identifiable.** The message now includes the core build hash, the number of accessory candidates and which payload sizes each candidate was missing, so a single bundle separates an unsupported TruckersMP build from a damaged install.
+- Updated compatibility with the **13 November ETS2 update** and the **20 November TruckersMP core update**; the pinned call sites and hook offsets were recaptured for both.
+
+The TR / EN interface, three vehicle appearance choices and the v1.0.38 part-appearance work are retained.
 
 ### New in v1.0.38
 
@@ -68,7 +78,7 @@ These fixes retain the TR / EN interface and the three vehicle appearance choice
 - Added bounded, rotating local JSONL diagnostics for startup, preparation stages, durations and errors. **Create diagnostic ZIP** asks before exporting and lets you choose where to save it. The bundle includes recent run status/error logs, removes user/profile paths, and excludes profile saves and mod archives. Mod names or Workshop IDs may appear; inspect the ZIP before sharing. It is never uploaded automatically.
 - Refined the launcher layout, including clearer status and vehicle-choice cards and separated utility buttons.
 
-Older EXEs cannot gain update notifications remotely. Download v1.0.38 manually once to receive notices about future releases.
+Older EXEs cannot gain update notifications remotely. Download v1.0.39 manually once to receive notices about future releases.
 
 ### New in v1.0.33
 
@@ -158,13 +168,13 @@ Console variable handling also covers values such as `g_brake_intensity` and `g_
 
 ### Antivirus alerts and permissions
 
-If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity). The linked [VirusTotal report covers the previous v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.38 has a different hash; check any scan report against the hash of your downloaded file.
+If your antivirus blocks or quarantines `TMP Mod.exe`, check that you downloaded it from this repository's [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) page and that its SHA-256 matches the value under [File integrity](#file-integrity). The linked [VirusTotal report covers the previous v1.0.31 EXE](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.39 has a different hash; check any scan report against the hash of your downloaded file.
 
 If you trust the verified file and decide to run it, allow that specific file through your antivirus's quarantine or protection history screen. Keep antivirus protection enabled. The report applies to the EXE with the linked hash; scan results can change and do not guarantee safety.
 
 ### Checks and troubleshooting
 
-The update passed 145/145 controller/core tests, 39/39 launcher/language/update tests and 30/30 visual-projection tests. The native policy passed 68 cases for each of truck, bus and car. The frozen 1.0.38 package passed payload validation and all three `--prepare-only` checks without starting the game or accessing a game process. Two-player live visual verification and live-server acceptance remain unverified; these results do not establish a fix for the observed game memory-allocation crashes.
+The update passed 145/145 controller/core tests, 40/40 launcher/language/update tests and 30/30 visual-projection tests. The native policy passed 68 cases for each of truck, bus and car. The frozen 1.0.39 package passed payload validation and both `--prepare-only` checks (cold 27.0 s, warm 11.7 s) without starting the game or accessing a game process. Two-player live visual verification and live-server acceptance remain unverified; these results do not establish a fix for the observed game memory-allocation crashes.
 
 Earlier live checks confirmed startup, mod changes in the same profile, time/weather commands and free-camera teleport. With the `/car/` fix, the tested car joined the server without being kicked. Save-edited original parts remain covered by the reported 88-part configuration tests. Remote appearance for each setup still needs a second player's check; these results do not cover every mod.
 
@@ -177,7 +187,7 @@ Earlier live checks confirmed startup, mod changes in the same profile, time/wea
 | The report lists encrypted definitions | Those definitions were skipped during merging. Check whether the mod provides readable definitions; preparation does not ask for or recover passwords. |
 | The database changed after preparation | Prepare a new session. |
 | You want a different appearance for a mod | Exit the game and choose truck, bus or car before starting new watchers. |
-| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.38**, create a diagnostic ZIP, inspect it and share it with the mod name and failing step. |
+| Preparation fails, a brand is missing or the game closes | Confirm **v1.0.39**, create a diagnostic ZIP, inspect it and share it with the mod name and failing step. |
 | A game or TruckersMP update changes the database format or code signatures | Check for a newer application version and report the error message. |
 
 ---
@@ -188,7 +198,17 @@ Earlier live checks confirmed startup, mod changes in the same profile, time/wea
 
 TruckersMP Mod, yerel ETS2 modlarını TruckersMP ile kullanmak ve oyun içindeki Mod Yöneticisi'ne erişmek için hazırlanmış bir masaüstü başlatıcısıdır.
 
-Kararlı **v1.0.38** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.38.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+Kararlı **v1.0.39** sürümünü [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) bölümünden indir. `TMP.Mod.exe` dosyasını `TMP Mod.exe` adıyla kaydet veya `TMP-Mod-1.0.39.zip` arşivini aç. İkisinde de aynı uygulama bulunur. [Depodaki kopya](TMP%20Mod.exe) da kullanılabilir. Ayrı bir uyumluluk modu kurman gerekmez.
+
+### v1.0.39'da yeni
+
+- **Hazırlık zaman aşımı düzeltildi.** Launcher, bir izleyicinin ilk durumunu yazması için artık 90 saniye bekliyor (önce 25). Temiz cache ile soğuk ölçüm: oyun imajı taraması 16,0 sn, core taraması 9,0 sn; izleyici bu işi her açılışta yeniden yapıyordu, dolayısıyla oyun tarafında sorun olmasa bile eski bütçe doluyordu. Zaman aşımı mesajı artık bütçeyi de yazıyor.
+- **Oyun hook site'ları build başına cache'lendi.** Çözülen site'lar oyun EXE'sinin SHA-256'sı altında saklanıyor; oyun güncellenirse eski RVA asla kullanılmıyor ve sonuç yine core DLL'deki mutlak hook hedeflerine karşı çapraz doğrulanıyor. Sıcak çözümleme 16,5 sn'den 0,08 sn'ye, izleyici başlangıç yolu 4,3 sn'ye indi.
+- **Teşhis ZIP'i artık hatayı düşürmüyor.** Maskeleme kayıtları baştan 20.000 karakterde kesiyordu, oysa dışa aktarma dosyanın sonunu okuyordu; bu yüzden en yeni kayıtlar pakete hiç girmiyor ve arşiv yarım kayıtla bitiyordu. Export artık en yeni kayıtları koruyor, atlanan satırları işaretliyor ve yarım kayıt göndermiyor.
+- **`database global` hataları tanımlanabilir.** Mesaj artık core build hash'ini, aday sayısını ve her adayda eksik olan payload boyutlarını içeriyor; tek bir paket "desteklenmeyen TruckersMP build'i" ile "bozuk kurulum"u ayırmaya yetiyor.
+- **13 Kasım ETS2 güncellemesi** ve **20 Kasım TruckersMP core güncellemesi** ile uyumluluk yenilendi; sabitlenen çağrı adresleri ve hook ofsetleri ikisi için yeniden yakalandı.
+
+TR / EN arayüzü, üç araç görünümü seçeneği ve v1.0.38'deki parça görünümü çalışması korunuyor.
 
 ### v1.0.38'de yeni
 
@@ -228,7 +248,7 @@ TR / EN arayüz ve üç araç görünümü seçeneği korunuyor. Bu sürüm, bel
 - Başlangıç, hazırlık aşamaları, süreler ve hatalar için sınırlı boyutta dönen yerel JSONL günlükleri eklendi. **Tanılama ZIP’i oluştur** dışa aktarmadan önce onay ister ve kaydetme yerini sana seçtirir. Paket son oturumların durum/hata günlüklerini içerir; kullanıcı/profil yollarını ayıklar, profil kayıtlarını ve mod arşivlerini içermez. Mod adları veya Workshop numaraları bulunabilir; paylaşmadan önce ZIP’i incele. Paket otomatik yüklenmez.
 - Durum ve araç seçimi kartları netleştirildi; alt işlemlerin düğmeleri birbirinden ayrıldı.
 
-Eski EXE'lere güncelleme bildirimi uzaktan eklenemez. Sonraki sürümlerden haberdar olmak için v1.0.38'yi ilk kez elle indir.
+Eski EXE'lere güncelleme bildirimi uzaktan eklenemez. Sonraki sürümlerden haberdar olmak için v1.0.39'u ilk kez elle indir.
 
 ### v1.0.33'te yeni
 
@@ -318,13 +338,13 @@ Konsol değişkenlerinin işlenmesi `g_brake_intensity` ve `g_trailer_stability`
 
 ### Antivirüs uyarıları ve izin verme
 
-Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity) bölümündeki değerle eşleştiğini kontrol et. Bağlantıdaki [VirusTotal raporu önceki v1.0.31 EXE dosyasına aittir](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.38'nin hash değeri farklıdır; incelediğin tarama raporunun indirdiğin dosyanın hash değeriyle eşleştiğini kontrol et.
+Antivirüs programın `TMP Mod.exe` dosyasını engeller veya karantinaya alırsa dosyayı bu deponun [Releases](https://github.com/0xdemir/tmp-bypass-mod-manager/releases/latest) sayfasından indirdiğini ve SHA-256 değerinin [Dosya bütünlüğü](#file-integrity) bölümündeki değerle eşleştiğini kontrol et. Bağlantıdaki [VirusTotal raporu önceki v1.0.31 EXE dosyasına aittir](https://www.virustotal.com/gui/file/7068f9e0c52e38e11e0eb06fa68679b0ffb2dcd83113f6094a4d679c7a6dc1d9). v1.0.39'un hash değeri farklıdır; incelediğin tarama raporunun indirdiğin dosyanın hash değeriyle eşleştiğini kontrol et.
 
 Doğruladığın dosyaya güveniyor ve çalıştırmak istiyorsan antivirüsünün karantina veya koruma geçmişi ekranından bu dosyaya özel izin ver. Antivirüs korumasını açık tut. Rapor, bağlantıdaki hash değerine sahip EXE için geçerlidir; tarama sonuçları zamanla değişebilir ve güvenlik garantisi vermez.
 
 ### Kontroller ve sorun giderme
 
-Güncelleme 145/145 controller/core testini, 39/39 başlatıcı/dil/güncelleme testini ve 30/30 görsel projeksiyon testini geçti. Native politika tır, otobüs ve araba seçimlerinin her biri için 68 vakayı geçti. Derlenmiş 1.0.38 paketi bütünlük doğrulamasını ve üç `--prepare-only` kontrolünü oyunu başlatmadan veya oyun sürecine erişmeden geçti. İki oyunculu canlı görsel doğrulama ve canlı sunucu kabulü henüz doğrulanmadı; bu sonuçlar, gözlenen oyun bellek ayırma çökmelerinin giderildiğini göstermez.
+Güncelleme 145/145 controller/core testini, 40/40 başlatıcı/dil/güncelleme testini ve 30/30 görsel projeksiyon testini geçti. Native politika tır, otobüs ve araba seçimlerinin her biri için 68 vakayı geçti. Derlenmiş 1.0.39 paketi bütünlük doğrulamasını ve iki `--prepare-only` kontrolünü (soğuk 27,0 sn, sıcak 11,7 sn) oyunu başlatmadan veya oyun sürecine erişmeden geçti. İki oyunculu canlı görsel doğrulama ve canlı sunucu kabulü henüz doğrulanmadı; bu sonuçlar, gözlenen oyun bellek ayırma çökmelerinin giderildiğini göstermez.
 
 Önceki canlı testlerde başlangıç, aynı profilde mod değiştirme, saat/hava komutları ve serbest kamera ışınlanması doğrulandı. `/car/` düzeltmesinden sonra denenen araba sunucuya atılmadan girdi. Save edit ile takılan orijinal parçalar, bildirilen 88 parçalık kurulumun testleriyle korunuyor. Her kurulumun karşı oyuncudaki görünümü için ikinci oyuncuyla kontrol gerekir; bu sonuçlar tüm modları kapsamaz.
 
@@ -337,7 +357,7 @@ Güncelleme 145/145 controller/core testini, 39/39 başlatıcı/dil/güncelleme 
 | Raporda şifreli tanımlar var | Bu tanımların birleştirmesi atlandı. Modun okunabilir tanımlar sunup sunmadığını kontrol et; hazırlık şifre istemez veya şifre kurtarmaz. |
 | Hazırlıktan sonra veri tabanı değişti | Yeni oturum hazırla. |
 | Modun karşı taraftaki görünümünü değiştirmek istiyorsun | Oyundan çık ve yeni izleyicileri başlatmadan önce tır, otobüs veya araba seç. |
-| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.38** kullandığını kontrol et; Tanılama ZIP’i oluştur, içeriğini incele ve mod adıyla hatanın oluştuğu adımı paylaş. |
+| Hazırlık başarısız, marka eksik veya oyun kapanıyor | **v1.0.39** kullandığını kontrol et; Tanılama ZIP’i oluştur, içeriğini incele ve mod adıyla hatanın oluştuğu adımı paylaş. |
 | Oyun veya TruckersMP güncellemesi veri tabanı biçimini ya da kod imzalarını değiştirdi | Yeni uygulama sürümünü kontrol et ve hata mesajını bildir. |
 
 ---
@@ -346,18 +366,18 @@ Güncelleme 145/145 controller/core testini, 39/39 başlatıcı/dil/güncelleme 
 
 ## File integrity / Dosya bütünlüğü
 
-**TruckersMP Mod 1.0.38** · **15,308,800 bytes / bayt**
+**TruckersMP Mod 1.0.39** · **14,821,376 bytes / bayt**
 
 EXE SHA-256:
 
 ~~~text
-8f80a527d122e5a40afccd05941f6757a94b6f0c3e1be60c64cedec11bc38a1a
+4f33280da27adc5a182541c56e657230ae01b3fe9b1e30361ffdbcd4440e822b
 ~~~
 
-ZIP SHA-256 (`TMP-Mod-1.0.38.zip`, 15,123,009 bytes / bayt):
+ZIP SHA-256 (`TMP-Mod-1.0.39.zip`, 14,622,621 bytes / bayt):
 
 ~~~text
-cbd5408a7bddee05d5a958b667560bb132e428ffbf806d056c2ac2266ade2676
+1c7b630958e6feda99094334a372a3c6c7ea825114187bfeb45fa6309a1834d6
 ~~~
 
 ~~~powershell
